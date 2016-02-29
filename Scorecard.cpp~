@@ -6,7 +6,7 @@
 Scorecard::Scorecard()
 {
 
-	print();
+
 
 }	//end constructor
 
