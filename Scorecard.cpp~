@@ -43,8 +43,6 @@ void Scorecard::print()
 	cout << "Fives (5s) \t\t" << scorecard[0][4] << "\t" << scorecard[1][4] << endl;
 	cout << "Sixes (6s) \t\t" << scorecard[0][5] << "\t" << scorecard[1][5] << endl;
 	cout << "Total Score \t\t" << calculateScore(0,6) << "\t" << calculateScore(1,6) << endl;
-	giveBonus(0);
-	giveBonus(1);
 	cout << "Bonus \t\t\t" << scorecard[0][6] << "\t" << scorecard[1][6] << endl;
 	cout << "Total Score \t\t" << calculateScore(0,7) << "\t" << calculateScore(1,7) << endl;
 	cout << "______________________________________________________________" << endl;

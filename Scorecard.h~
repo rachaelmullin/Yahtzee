@@ -17,7 +17,7 @@ class Scorecard : public Game
 		Scorecard();	//constructor
 		void print();	//prints board
 		int calculateScore(int, int);
-		void giveBonus(int);
+		int giveBonus(int);
 
 	private:
 		int totalScore[2];	//stores total score for both players

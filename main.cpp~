@@ -14,7 +14,10 @@ int main()
 	//declare variables
 	int gameplay = 1;
 
-	Scorecard a;
+	while (gameplay == 1)
+	{
+		Scorecard a;
+	}	//end while loop
 
 	return 0;
 }	//end of main function
