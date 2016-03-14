@@ -5,8 +5,6 @@
 #ifndef PARTICIPANTS_H
 #define PARTICIPANTS_H
 #include <iostream>
-#include <iomanip>
-#include <string>
 #include "Game.h"
 using namespace std;
 

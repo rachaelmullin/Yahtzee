@@ -24,8 +24,8 @@ void Scorecard::calculateScore()
 void Scorecard::print()
 {
 	//declare variables
-	string name1 = "noah";
-	string name2 = "rob";
+	string name1 = noah;
+	string name2 = rob;
 
 	cout << "______________________________________________________________";
 	cout << "\t" << name1 << "\t" << name2 << endl;

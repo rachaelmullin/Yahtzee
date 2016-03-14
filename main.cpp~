@@ -3,7 +3,6 @@
 // main.cpp
 
 #include <iostream>
-#include <string>
 #include "Game.h"
 #include "Scorecard.h"
 #include "Participants.h"
