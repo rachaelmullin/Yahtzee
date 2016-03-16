@@ -31,7 +31,7 @@ void Scorecard::print()
 {
 	//declare variables
 	string name1 = "Noah";
-	string name2 = "Rachael";
+	string name2 = "Not Rachael";
 
 	cout << "______________________________________________________________" << endl;
 	cout << "\t\t\t" << name1 << "\t" << name2 << endl;
