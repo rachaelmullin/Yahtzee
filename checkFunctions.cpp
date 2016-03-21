@@ -99,11 +99,12 @@ int check3ofKind(int player, int die[2]) {
 		for (int j=0; j<5; j++) {
 			if (i!=j && die[i]==die[j]) {
 				count++;
-				valid=die[j];
-				
 			}
 		}
-		if (count==2) break;
+		if (count==2) {
+			valid=die[i];
+			break;
+		}
 	}
 	if (valid != 0) {
 		total=valid*3;
@@ -119,11 +120,12 @@ int check4ofKind(int player, int die[5]) {
                 for (int j=0; j<5; j++) {
                         if (i!=j && die[i]==die[j]) {
                                 count++;
-                                valid=die[j];
-
                         }
                 }
-                if (count==3) break;
+                if (count==3) { 
+			valid=die[i];	
+			break;
+		}
         }
         if (valid != 0) {
                 total=valid*4;
@@ -147,7 +149,7 @@ int checkFullHouse(int player, int die[5]) {
 
                         			}
                 			}
-                			if (count==3) {
+                			if (count==2) {
 						triple=1;
 					}
 				}
@@ -162,26 +164,23 @@ int checkFullHouse(int player, int die[5]) {
 }
 
 int checkSmStraight(int player, int die[5]) {
-	int total, array[5], temp, valid;
-	for (int i=0; i<5; i++) {
-		array[i]=die[i];
-	}
-	for (int j=0; j<4; j++) {
-		for (int k=0; k<4-4; k++) {
-			if (array[k]>array[k+1]) {
-				temp=array[k];
-				array[k]=array[k+1];
-				array[k+1]=temp;
-			}
-		}
-	}
+	int total, temp, valid;
+	for (int j=0; j<5; j++) {
+        	for (int k=0; k<5; k++) {
+                	if (die[j]<die[k]) {
+                        	temp=die[j];
+                        	die[j]=die[k];
+                        	die[k]=temp;
+                        }
+                }
+        }
 	for (int i=0; i<4; i++) {
-		if (array[i]==array[i+1]+1) valid=1;
+		if (die[i]==die[i+1]+1) valid=1;
 		else valid=0;
 	}
 	if (valid==0) {
 		for (int i=1; i<5; i++) {
-			if (array[i]==array[i+1]+1) valid=1;
+			if (die[i]==die[i+1]+1) valid=1;
 			else valid=0;
 		}
 	}
@@ -191,21 +190,18 @@ int checkSmStraight(int player, int die[5]) {
 }
 
 int checkLgStraight(int player, int die[5]) {
-	int total, array[5], temp, valid;
-        for (int i=0; i<5; i++) {
-                array[i]=die[i];
-        }
-        for (int j=0; j<4; j++) {
-                for (int k=0; k<4-4; k++) {
-                        if (array[k]>array[k+1]) {
-                                temp=array[k];
-                                array[k]=array[k+1];
-                                array[k+1]=temp;
+	int total, temp, valid;
+	for (int j=0; j<5; j++) {
+                for (int k=0; k<5; k++) {
+                        if (die[j]<die[k]) {
+                                temp=die[j];
+                                die[j]=die[k];
+                                die[k]=temp;
                         }
                 }
-        }       
-	for (int i=0; i<5; i++) {
-		if (array[i]==array[i+1]+1) valid=1;
+        }
+	for (int i=0; i<4; i++) {
+		if (die[i]==(die[i+1]-1)) valid=1;
 		else valid=0;
 	}
 	if (valid==1) total=40;
@@ -222,7 +218,7 @@ int checkYahtzee(int player, int die[5]) {
 				count++;
 			}
 		}
-		if (count==5) {
+		if (count==4) {
 			valid=1;
 		}
 	}
