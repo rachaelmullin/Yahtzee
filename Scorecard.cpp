@@ -48,6 +48,13 @@ void Scorecard::print()
 	cout << "Bonus \t\t\t" << scorecard[0][6] << "\t" << scorecard[1][6] << endl;
 	cout << "Total Score \t\t" << calculateScore(0,7) << "\t" << calculateScore(1,7) << endl;
 	cout << "______________________________________________________________" << endl;
+	cout << "3 of a Kind (Total value of dice) \t" << scorecard[0][7] << "\t" << scorecard[1,7] << endl;
+	cout << "4 of a Kind (Total value of dice) \t" << scorecard[0][8] << "\t" << scorecard[1,8] << endl;
+	cout << "Full House (35 pts) \t\t" << scorecard[0][9] << "\t" << scorecard[1,9] << endl;
+	cout << "Small Straight (30 pts) \t\t" << scorecard[0][10] << "\t" << scorecard[1,10] << endl;
+	cout << "Large Straight (40 pts) \t\t" << scorecard[0][11] << "\t" << scorecard[1,11] << endl;
+	cout << "Yahtzee! (50 pts) \t\t" << scorecard[0][12] << "\t" << scorecard[1,12] << endl;
+	cout << "Chance (Sum of all dice) \t\t" << scorecard[0][13] << "\t" << scorecard[1,13] << endl;
 }	//end of print function
 
 void Scorecard::giveBonus(int player)
