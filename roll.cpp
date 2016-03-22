@@ -144,8 +144,6 @@ int main() {
         }
     }
 
-    cout << "Dice 6 = " << die[5] << endl;
-
     cout << "Your dice are: " << endl;
     for (int i=0; i<6; i++) {
         cout << "Die " << i+1 << " = " << die[i] << endl;

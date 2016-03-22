@@ -17,7 +17,7 @@ Participants::Participants()
 
 void Participants::roll()
 {
-	int roll=1, next;
+    int roll=1, next;
     int die[5]; // simulates the dice
     string save;
     int savedDie[6] = {0, 0, 0, 0, 0, 0};
@@ -146,8 +146,6 @@ void Participants::roll()
             }
         }
     }
-
-    cout << "Dice 6 = " << die[5] << endl;
 
     cout << "Your dice are: " << endl;
     for (int i=0; i<6; i++) {
