@@ -6,6 +6,9 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <ctime>
+#include <cstdlib>
+
 using namespace std;
 
 Participants::Participants()

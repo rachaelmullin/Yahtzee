@@ -134,7 +134,6 @@ int main() {
                 }
             }
             cout << endl;
-            cout << "Dice 6 = " << die[5] << endl;
 
             if (roll!=3) {
                 cout << "Next roll? Input 1 for yes, 0 for no: ";
