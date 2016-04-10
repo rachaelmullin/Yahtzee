@@ -7,16 +7,20 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include "Scorecard.h"
+
 using namespace std;
 
 //base class
 class Game
 {
+	friend class Participants;
 	public:
 			Game();
-			void choosePlayer();	//decide to play against human or CPU
+			void choosePlayer(); //decide to play against human or CPU
 	protected:
-			int scorecard[2][16];	//variable that translates between all pieces of program
+			int scorecard[3][16];	//variable that translates between all pieces of program
+			int mask[2][13];
 			int computer;
 };
 

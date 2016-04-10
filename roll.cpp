@@ -15,15 +15,15 @@ int main() {
     int roll=1, next;
     int die[5]; // simulates the dice
     string save;
-    int savedDie[6] = {0, 0, 0, 0, 0, 0};
-    int savedDieValue[6] = {0, 0, 0, 0, 0, 0};
+    int savedDie[5] = {0, 0, 0, 0, 0};
+    int savedDieValue[5] = {0, 0, 0, 0, 0};
 
     srand(time(NULL));
     cout << endl; 
     cout << "Roll 1!" << endl;
 
-    for (int i=0; i<6; i++) { // first roll, outputs 6 random dice
-        die[i] = rand() % 6 + 1;
+    for (int i=0; i<5; i++) { // first roll, outputs 6 random dice
+        die[i] = rand() % 5 + 1;
         cout << "Die " << i+1 << " = " << die[i] << endl;
     }
     cout << endl;
@@ -39,7 +39,7 @@ int main() {
 
     cout << endl;
 
-    for (int i=0; i<6; i++) { // inputs the saved die's values into its own array for future use
+    for (int i=0; i<5; i++) { // inputs the saved die's values into its own array for future use
         if (savedDie[i] != 0) {
             savedDieValue[savedDie[i]-1] = die[savedDie[i]-1];   
         }
@@ -48,7 +48,7 @@ int main() {
     // output saved die
     cout << "Saved Dice..." << endl;  
 
-    for (int i=0; i<6; i++) { // outputs saved dice
+    for (int i=0; i<5; i++) { // outputs saved dice
         if (savedDie[i] != 0) {
             cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
         }
@@ -57,7 +57,7 @@ int main() {
 
     // output unsaved die
     cout << "Unsaved die..." << endl;
-    for (int i=0; i<6; i++) {
+    for (int i=0; i<5; i++) {
         if (savedDieValue[i] == 0) {    
             cout << "Die " << i+1  << " = " << die[i] << endl;
         }
@@ -75,16 +75,16 @@ int main() {
         cout << "Roll " << roll << "! Let's roll!" << endl;
 
         cout << "New dice..." << endl;
-        for (int i=0; i<6; i++) { // outputs new dice rolls
+        for (int i=0; i<5; i++) { // outputs new dice rolls
             if (savedDieValue[i] == 0) {
-                die[i] = rand() % 6 + 1;
+                die[i] = rand() % 5 + 1;
                 cout << "Die " << i+1 << " = " << die[i] << endl;
             }
         }
         cout << endl;
 
         cout << "Saved dice..." << endl;
-        for (int i=0; i<6; i++) { // outputs saved dice
+        for (int i=0; i<5; i++) { // outputs saved dice
             if (savedDie[i] != 0) {
                 cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
             }
@@ -92,7 +92,7 @@ int main() {
         cout << endl;
 
         // resetting saved die arrays
-        for (int i=0; i<6; i++) {
+        for (int i=0; i<5; i++) {
             savedDie[i] = 0;
             savedDieValue[i] = 0;
         }
@@ -109,7 +109,7 @@ int main() {
                 savedDie[i] = save[i] - '0';
             }
 
-            for (int i=0; i<6; i++) {
+            for (int i=0; i<5; i++) {
                 if (savedDie[i] != 0) {
                     savedDieValue[savedDie[i]-1] = die[savedDie[i]-1];   
                 }
@@ -119,7 +119,7 @@ int main() {
             // output saved die
             cout << "You saved..." << endl;  
 
-            for (int i=0; i<6; i++) { // outputs saved dice
+            for (int i=0; i<5; i++) { // outputs saved dice
                 if (savedDie[i] != 0) {
                     cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
                 }
@@ -128,7 +128,7 @@ int main() {
 
             // output unsaved die
             cout << "Unsaved die..." << endl;
-            for (int i=0; i<6; i++) {
+            for (int i=0; i<5; i++) {
                 if (savedDieValue[i] == 0) {    
                     cout << "Die " << i+1  << " = " << die[i] << endl;
                 }
@@ -144,7 +144,7 @@ int main() {
     }
 
     cout << "Your dice are: " << endl;
-    for (int i=0; i<6; i++) {
+    for (int i=0; i<5; i++) {
         cout << "Die " << i+1 << " = " << die[i] << endl;
     }
     cout << "Now pick a score!" << endl;

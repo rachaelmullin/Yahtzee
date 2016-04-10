@@ -11,10 +11,7 @@ using namespace std;
 
 int main()
 {
-	//declare variables
-	int gameplay = 1;
-
-	Scorecard a;
+	Game game;
 
 	return 0;
 }	//end of main function

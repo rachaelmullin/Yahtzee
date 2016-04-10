@@ -158,7 +158,7 @@ void Participants::roll()
 
 }	//end of roll function
 
-int checkAce(int player, int die[5]) {
+int Participants::checkAce() {
         int count=0, total;
         for (int i=0; i<5; i++) {
                 if (die[i]==1) {
@@ -169,7 +169,7 @@ int checkAce(int player, int die[5]) {
         return total;
 }
 
-int checkTwos(int player, int die[5]) {
+int Participants::checkTwos() {
         int count=0, total;
         for (int i=0; i<5; i++) {
                 if (die[i]==2) {
@@ -180,7 +180,7 @@ int checkTwos(int player, int die[5]) {
         return total;
 }
 
-int checkThrees(int player, int die[5]) {
+int Participants::checkThrees() {
         int count=0, total;
         for (int i=0; i<5; i++) {
                 if (die[i]==3) {
@@ -191,7 +191,7 @@ int checkThrees(int player, int die[5]) {
         return total;
 }
 
-int checkFours(int player, int die[5]) {
+int Participants::checkFours() {
         int count=0, total;
         for (int i=0; i<5; i++) {
                 if (die[i]==4) {
@@ -202,7 +202,7 @@ int checkFours(int player, int die[5]) {
         return total;
 }
 
-int checkFives(int player, int die[5]) {
+int Participants::checkFives() {
         int count=0, total;
         for (int i=0; i<5; i++) {
                 if (die[i]==5) {
@@ -213,7 +213,7 @@ int checkFives(int player, int die[5]) {
         return total;
 }
 
-int checkSix(int player, int die[5]) {
+int Participants::checkSix() {
         int count=0, total;
         for (int i=0; i<5; i++) {
                 if (die[i]==6) {
@@ -224,7 +224,7 @@ int checkSix(int player, int die[5]) {
         return total;
 }
 
-int check3ofKind(int player, int die[2]) {
+int Participants::check3ofKind() {
         int valid=0, total;
         for (int i=0; i<5; i++) {
                 int count=0;
@@ -245,7 +245,7 @@ int check3ofKind(int player, int die[2]) {
         return total;
 }
 
-int check4ofKind(int player, int die[5]) {
+int Participants::check4ofKind() {
         int valid=0, total;
         for (int i=0; i<5; i++) {
                 int count=0;
@@ -266,7 +266,7 @@ int check4ofKind(int player, int die[5]) {
         return total;
 }
 
-int checkFullHouse(int player, int die[5]) {
+int Participants::checkFullHouse() {
         int total, pair=0, pairNum, triple=0, tripleNum;
         for (int i=0; i<5; i++) {
                 for (int j=0; j<5; j++) {
@@ -295,7 +295,7 @@ int checkFullHouse(int player, int die[5]) {
         return total;
 }
 
-int checkSmStraight(int player, int die[5]) {
+int Participants::checkSmStraight() {
         int total, temp, valid;
         for (int j=0; j<5; j++) {
                 for (int k=0; k<5; k++) {
@@ -321,7 +321,7 @@ int checkSmStraight(int player, int die[5]) {
         return total;
 }
 
-int checkLgStraight(int player, int die[5]) {
+int Participants::checkLgStraight() {
         int total, temp, valid;
         for (int j=0; j<5; j++) {
                 for (int k=0; k<5; k++) {
@@ -341,7 +341,7 @@ int checkLgStraight(int player, int die[5]) {
         return total;
 }
 
-int checkYahtzee(int player, int die[5]) {
+int Participants::checkYahtzee() {
         int total, valid=0;
         for (int i=0; i<5; i++) {
                 int count=0;
@@ -359,7 +359,80 @@ int checkYahtzee(int player, int die[5]) {
         return total;
 }
 
-int checkChance(int player, int die[5]) {
+int Participants::checkChance() {
         int total=die[0]+die[1]+die[2]+die[3]+die[4];
         return total;
 }
+
+void Participants::possiblePoints(int player) {
+	scorecard[0][0]=checkAce();
+	scorecard[0][1]=checkTwos();
+	scorecard[0][2]=checkThrees();
+	scorecard[0][3]=checkFours();
+	scorecard[0][4]=checkFives();
+	scorecard[0][5]=checkSix();
+	scorecard[0][7]=check3ofKind();
+	scorecard[0][8]=check4ofKind();
+	scorecard[0][9]=checkFullHouse();
+	scorecard[0][10]=checkSmStraight();
+	scorecard[0][11]=checkLgStraight();
+	scorecard[0][12]=checkYahtzee();
+	scorecard[0][13]=checkChance();	
+
+	for (int i=0; i<14; i++) {
+		if (mask[player-1][i]!=0) scorecard[0][i]=0;
+	}
+}
+
+void Participants::choose(int player) {
+	int choice;
+	cout << "Which square would you like to fill?";
+	cin >> choice;
+
+	if (mask[player-1][choice]==0 && choice>=0 && choice<=13) {
+		switch(choice) {
+			case 0:
+				scorecard[player][0] = scorecard[0][0];
+				break;
+			case 1:
+				scorecard[player][1] = scorecard[0][1];
+				break;
+			case 2:
+				scorecard[player][2] = scorecard[0][2];
+				break;
+			case 3:
+				scorecard[player][3] = scorecard[0][3];
+				break;
+			case 4:
+				scorecard[player][4] = scorecard[0][4];
+				break;
+			case 5:
+				scorecard[player][5] = scorecard[0][5];
+				break;
+			case 6:
+				scorecard[player][6] = scorecard[0][6];	
+				break;
+			case 7:
+				scorecard[player][7] = scorecard[0][7];	
+				break;
+			case 8:
+				scorecard[player][8] = scorecard[0][8];	
+				break;
+			case 9:
+				scorecard[player][9] = scorecard[0][9];	
+				break;
+			case 10:
+				scorecard[player][10] = scorecard[0][10];	
+				break;
+			case 11:
+				scorecard[player][11] = scorecard[0][11];	
+				break;
+			case 12:
+				scorecard[player][12] = scorecard[0][12];	
+				break;
+			case 13:
+				scorecard[player][13] = scorecard[0][13];	
+				break;	
+		}
+	}
+}	

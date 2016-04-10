@@ -1,10 +1,10 @@
 all:	Yahtzee
 
-Yahtzee:main.o Game.o Scorecard.o Participants.o
+Yahtzee: main.o Game.o Scorecard.o Participants.o
 	g++ main.o Game.o Scorecard.o Participants.o -o Yahtzee
 
-main.o: main.cpp Scorecard.cpp
-	g++ -c main.cpp Scorecard.cpp
+main.o: main.cpp Game.cpp
+	g++ -c main.cpp Game.cpp
 
 Game.o: Game.cpp
 	g++ -c Game.cpp

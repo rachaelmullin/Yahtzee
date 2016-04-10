@@ -1,7 +1,7 @@
 //Rachael Mullin, Pauline Blatt, Noah Sarkey
 //Fund Comp 2 Final Project
 //Yahtzee
-//functions for ensuring a valid option has been entered on the scorecard
+//functions for ensuring a valid option has been entered on the scorecard, computes total for each square, if invalid square has been chosen, square score is set to 0
 
 #include <iostream>
 using namespace std;
@@ -26,7 +26,6 @@ int main() {
 }
 
 int checkAce(int player, int die[5]) {
-//take in die array, check if  valid, compute score for that square on scorecard
 	int count=0, total;
 	for (int i=0; i<5; i++) {
 		if (die[i]==1) {

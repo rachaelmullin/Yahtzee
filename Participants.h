@@ -8,28 +8,31 @@
 #include <iomanip>
 #include <string>
 #include "Game.h"
+#include "Scorecard.h"
 using namespace std;
 
 //derived class
 class Participants : public Game
 {
+	friend class Game;
 	public:
 		Participants();	//constructor
 		void roll();
-		int checkAce(int,int);
-		int checkTwos(int, int);
-		int checkThrees(int, int);
-		int checkFours(int, int);
-		int checkFives(int, int);
-		int checkSix(int, int);
-		int check3ofKind(int, int);
-		int check4ofKind(int, int);
-		int checkFullHouse(int, int);
-		int checkSmStraight(int, int);
-		int checkLgStraight(int, int);
-		int checkYahtzee(int, int);
-		int checkChance(int, int);
-		
+		int checkAce();
+		int checkTwos();
+		int checkThrees();
+		int checkFours();
+		int checkFives();
+		int checkSix();
+		int check3ofKind();
+		int check4ofKind();
+		int checkFullHouse();
+		int checkSmStraight();
+		int checkLgStraight();
+		int checkYahtzee();
+		int checkChance();
+		void possiblePoints(int);
+		void choose(int);		
 	private:
 		int die[6];
 		int rollAgain[6];
