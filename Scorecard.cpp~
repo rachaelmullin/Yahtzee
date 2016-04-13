@@ -5,7 +5,8 @@
 #include <iostream>
 #include <string>
 #include "Scorecard.h"
-
+#include "Participants.h"
+#include "Participants.cpp"
 using namespace std;
 
 Scorecard::Scorecard()

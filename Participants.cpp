@@ -3,6 +3,8 @@
 // Participants.cpp
 
 #include "Participants.h"
+#include "Scorecard.h"
+#include "Scorecard.cpp"
 #include <iostream>
 #include <iomanip>
 #include <string>

@@ -15,8 +15,6 @@ using namespace std;
 //derived class
 class Scorecard
 {
-	friend class Participants;	
-
 	public:
 		Scorecard();	//constructor
 		void print();	//prints board

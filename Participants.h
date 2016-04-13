@@ -2,19 +2,25 @@
 // Final Project
 // Participants.h
 
-#ifndef PARTICIPANTS_H
-#define PARTICIPANTS_H
+#pragma once
+#ifndef _PARTICIPANTS_H_
+#define _PARTICIPANTS_H_
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include "Game.h"
 #include "Scorecard.h"
+
 using namespace std;
 
+class Scorecard;
+
 //derived class
-class Participants : public Game
+class Participants
 {
 	friend class Game;
+	friend class Scorecard;
+
 	public:
 		Participants();	//constructor
 		void roll();
@@ -33,11 +39,12 @@ class Participants : public Game
 		int checkChance();
 		void possiblePoints(int);
 		void choose(int);		
-	private:
+	protected:
 		int die[6];
 		int rollAgain[6];
+		int scorecard[3][16];	//variable that translates between all pieces of program
+		int mask[2][13];
+		Scorecard sc;
 };
-
-
 
 #endif

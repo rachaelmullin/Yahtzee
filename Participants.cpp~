@@ -157,3 +157,282 @@ void Participants::roll()
     cout << "Now pick a score!" << endl;
 
 }	//end of roll function
+
+int Participants::checkAce() {
+        int count=0, total;
+        for (int i=0; i<5; i++) {
+                if (die[i]==1) {
+                        count++;
+                }
+        }
+        total=count*1;
+        return total;
+}
+
+int Participants::checkTwos() {
+        int count=0, total;
+        for (int i=0; i<5; i++) {
+                if (die[i]==2) {
+                        count++;
+                }
+        }
+        total=count*1;
+        return total;
+}
+
+int Participants::checkThrees() {
+        int count=0, total;
+        for (int i=0; i<5; i++) {
+                if (die[i]==3) {
+                        count++;
+                }
+        }
+        total=count*1;
+        return total;
+}
+
+int Participants::checkFours() {
+        int count=0, total;
+        for (int i=0; i<5; i++) {
+                if (die[i]==4) {
+                        count++;
+                }
+        }
+        total=count*1;
+        return total;
+}
+
+int Participants::checkFives() {
+        int count=0, total;
+        for (int i=0; i<5; i++) {
+                if (die[i]==5) {
+                        count++;
+                }
+        }
+        total=count*1;
+        return total;
+}
+
+int Participants::checkSix() {
+        int count=0, total;
+        for (int i=0; i<5; i++) {
+                if (die[i]==6) {
+                        count++;
+                }
+        }
+        total=count*1;
+        return total;
+}
+
+int Participants::check3ofKind() {
+        int valid=0, total;
+        for (int i=0; i<5; i++) {
+                int count=0;
+                for (int j=0; j<5; j++) {
+                        if (i!=j && die[i]==die[j]) {
+                                count++;
+                        }
+                }
+                if (count==2) {
+                        valid=die[i];
+                        break;
+                }
+        }
+        if (valid != 0) {
+                total=valid*3;
+        }
+        else total=0;
+        return total;
+}
+
+int Participants::check4ofKind() {
+        int valid=0, total;
+        for (int i=0; i<5; i++) {
+                int count=0;
+                for (int j=0; j<5; j++) {
+                        if (i!=j && die[i]==die[j]) {
+                                count++;
+                        }
+                }
+                if (count==3) {
+                        valid=die[i];
+                        break;
+                }
+        }
+        if (valid != 0) {
+                total=valid*4;
+        }
+        else total=0;
+        return total;
+}
+
+int Participants::checkFullHouse() {
+        int total, pair=0, pairNum, triple=0, tripleNum;
+        for (int i=0; i<5; i++) {
+                for (int j=0; j<5; j++) {
+                        if (i!=j && die[i]==die[j]) {
+                                pair=1;
+                                pairNum=die[j];
+                                for (int i=0; i<5; i++) {
+                                        int count=0;
+                                        for (int j=0; j<5; j++) {
+                                                if (i!=j && die[i]==die[j] && die[j]!=pairNum) {
+                                                        count++;
+
+                                                }
+                                        }
+                                        if (count==2) {
+                                                triple=1;
+                                        }
+                                }
+                        }
+                }
+        }
+        if (pair=1 && triple==1) {
+                total=25;
+        }
+        else total=0;
+        return total;
+}
+
+int Participants::checkSmStraight() {
+        int total, temp, valid;
+        for (int j=0; j<5; j++) {
+                for (int k=0; k<5; k++) {
+                        if (die[j]<die[k]) {
+                                temp=die[j];
+                                die[j]=die[k];
+                                die[k]=temp;
+                        }
+                }
+        }
+        for (int i=0; i<4; i++) {
+                if (die[i]==die[i+1]+1) valid=1;
+                else valid=0;
+        }
+        if (valid==0) {
+                for (int i=1; i<5; i++) {
+                        if (die[i]==die[i+1]+1) valid=1;
+                        else valid=0;
+                }
+        }
+        if (valid==1) total=30;
+        else total=0;
+        return total;
+}
+
+int Participants::checkLgStraight() {
+        int total, temp, valid;
+        for (int j=0; j<5; j++) {
+                for (int k=0; k<5; k++) {
+                        if (die[j]<die[k]) {
+                                temp=die[j];
+                                die[j]=die[k];
+                                die[k]=temp;
+                        }
+                }
+        }
+        for (int i=0; i<4; i++) {
+                if (die[i]==(die[i+1]-1)) valid=1;
+                else valid=0;
+        }
+        if (valid==1) total=40;
+        else total=0;
+        return total;
+}
+
+int Participants::checkYahtzee() {
+        int total, valid=0;
+        for (int i=0; i<5; i++) {
+                int count=0;
+                for (int j=0; j<5; j++) {
+                        if (i!=j && die[i]==die[j]) {
+                                count++;
+                        }
+                }
+                if (count==4) {
+                        valid=1;
+                }
+        }
+        if (valid==1) total=50;
+        else total=0;
+        return total;
+}
+
+int Participants::checkChance() {
+        int total=die[0]+die[1]+die[2]+die[3]+die[4];
+        return total;
+}
+
+void Participants::possiblePoints(int player) {
+	scorecard[0][0]=checkAce();
+	scorecard[0][1]=checkTwos();
+	scorecard[0][2]=checkThrees();
+	scorecard[0][3]=checkFours();
+	scorecard[0][4]=checkFives();
+	scorecard[0][5]=checkSix();
+	scorecard[0][7]=check3ofKind();
+	scorecard[0][8]=check4ofKind();
+	scorecard[0][9]=checkFullHouse();
+	scorecard[0][10]=checkSmStraight();
+	scorecard[0][11]=checkLgStraight();
+	scorecard[0][12]=checkYahtzee();
+	scorecard[0][13]=checkChance();	
+
+	for (int i=0; i<14; i++) {
+		if (mask[player-1][i]!=0) scorecard[0][i]=0;
+	}
+}
+
+void Participants::choose(int player) {
+	int choice;
+	cout << "Which square would you like to fill?";
+	cin >> choice;
+
+	if (mask[player-1][choice]==0 && choice>=0 && choice<=13) {
+		switch(choice) {
+			case 0:
+				scorecard[player][0] = scorecard[0][0];
+				break;
+			case 1:
+				scorecard[player][1] = scorecard[0][1];
+				break;
+			case 2:
+				scorecard[player][2] = scorecard[0][2];
+				break;
+			case 3:
+				scorecard[player][3] = scorecard[0][3];
+				break;
+			case 4:
+				scorecard[player][4] = scorecard[0][4];
+				break;
+			case 5:
+				scorecard[player][5] = scorecard[0][5];
+				break;
+			case 6:
+				scorecard[player][6] = scorecard[0][6];	
+				break;
+			case 7:
+				scorecard[player][7] = scorecard[0][7];	
+				break;
+			case 8:
+				scorecard[player][8] = scorecard[0][8];	
+				break;
+			case 9:
+				scorecard[player][9] = scorecard[0][9];	
+				break;
+			case 10:
+				scorecard[player][10] = scorecard[0][10];	
+				break;
+			case 11:
+				scorecard[player][11] = scorecard[0][11];	
+				break;
+			case 12:
+				scorecard[player][12] = scorecard[0][12];	
+				break;
+			case 13:
+				scorecard[player][13] = scorecard[0][13];	
+				break;	
+		}
+	}
+}	

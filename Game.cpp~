@@ -26,7 +26,7 @@ Game::Game()
 		p.roll();
 		p.possiblePoints(player);
 		scr.print();
-		p.choose(player);
+		choose(player);
 		
 		player=player+1;
 		pl=player%2;
