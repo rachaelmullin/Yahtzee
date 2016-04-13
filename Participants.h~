@@ -13,6 +13,8 @@
 
 using namespace std;
 
+class Scorecard;
+
 //derived class
 class Participants
 {
@@ -42,7 +44,7 @@ class Participants
 		int rollAgain[6];
 		int scorecard[3][16];	//variable that translates between all pieces of program
 		int mask[2][13];
-		Scorecard sc;
+		//Scorecard sc;
 };
 
 #endif

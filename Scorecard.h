@@ -7,7 +7,6 @@
 #define _SCORECARD_H_
 #include <iostream>
 #include <string>
-
 #include "Participants.h"
 
 using namespace std;

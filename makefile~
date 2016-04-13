@@ -6,11 +6,11 @@ Yahtzee: main.o Game.o Scorecard.o Participants.o
 main.o: main.cpp Game.cpp
 	g++ -c main.cpp Game.cpp
 
-Game.o: Game.cpp Scorecard.cpp Participants.cpp
-	g++ -c Game.cpp Scorecard.cpp Participants.cpp
+Game.o: Game.cpp
+	g++ -c Game.cpp
 
-Scorecard.o: Scorecard.cpp Participants.cpp
-	g++ -c Scorecard.cpp Participants.cpp
+Scorecard.o: Scorecard.cpp
+	g++ -c Scorecard.cpp 
 
 Participants.o: Participants.cpp
 	g++ -c Participants.cpp

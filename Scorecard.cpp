@@ -37,12 +37,12 @@ void Scorecard::print()
 	cout << "______________________________________________________________" << endl;
 	cout << "\t\t\t" << "Possible Points" << "\t" << name1 << "\t" << name2 << endl;
 	cout << "______________________________________________________________" << endl;
-	cout << "1. Aces (1s) \t\t" << scorecard[0][0] << "\t" << scorecard[1][0] << "\t" << scorecard[2][0] << endl;
-	cout << "2. Twos (2s) \t\t" << scorecard[0][1] << "\t" << scorecard[1][1] << "\t" << scorecard[2][1] << endl;
-	cout << "3. Threes (3s) \t\t" << scorecard[0][2] << "\t" << scorecard[1][2] << "\t" << scorecard[2][2] << endl;
-	cout << "4. Fours (4s) \t\t" << scorecard[0][3] << "\t" << scorecard[1][3] << "\t" << scorecard[2][3] << endl;
-	cout << "5. Fives (5s) \t\t" << scorecard[0][4] << "\t" << scorecard[1][4] << "\t" << scorecard[2][4] <<  endl;
-	cout << "6. Sixes (6s) \t\t" << scorecard[0][5] << "\t" << scorecard[1][5] << "\t" << scorecard[2][5] << endl;
+	cout << "1. Aces (1s) \t\t" << pr.scorecard[0][0] << "\t" << pr.scorecard[1][0] << "\t" << pr.scorecard[2][0] << endl;
+	cout << "2. Twos (2s) \t\t" << pr.scorecard[0][1] << "\t" << pr.scorecard[1][1] << "\t" << pr.scorecard[2][1] << endl;
+	cout << "3. Threes (3s) \t\t" << pr.scorecard[0][2] << "\t" << pr.scorecard[1][2] << "\t" << pr.scorecard[2][2] << endl;
+	cout << "4. Fours (4s) \t\t" << pr.scorecard[0][3] << "\t" << pr.scorecard[1][3] << "\t" << pr.scorecard[2][3] << endl;
+	cout << "5. Fives (5s) \t\t" << pr.scorecard[0][4] << "\t" << pr.scorecard[1][4] << "\t" << pr.scorecard[2][4] <<  endl;
+	cout << "6. Sixes (6s) \t\t" << pr.scorecard[0][5] << "\t" << pr.scorecard[1][5] << "\t" << pr.scorecard[2][5] << endl;
 	cout << "Total Score \t\t" << calculateScore(1,6) << "\t" << calculateScore(2,6) << endl;
 	giveBonus(1);
 	giveBonus(2);
@@ -68,5 +68,5 @@ void Scorecard::giveBonus(int player)
 		bonus = 35;
 	}
 
-	scorecard[player][6] = bonus;
+	pr.scorecard[player][6] = bonus;
 }	//end of giveBonus function
