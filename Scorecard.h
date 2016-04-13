@@ -7,14 +7,15 @@
 #define _SCORECARD_H_
 #include <iostream>
 #include <string>
-#include "Participants.h"
+//#include "Participants.h"
 
 using namespace std;
 
 //derived class
 class Scorecard
 {
-	friend class Participants;	
+	friend class Participants;
+	friend class Game;	
 
 	public:
 		Scorecard();	//constructor

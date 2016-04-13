@@ -8,8 +8,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include "Game.h"
-#include "Scorecard.h"
+//#include "Game.h"
+//#include "Scorecard.h"
 
 using namespace std;
 

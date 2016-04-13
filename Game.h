@@ -8,16 +8,17 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include "Scorecard.h"
-#include "Participants.h"
+//#include "Scorecard.h"
+//#include "Participants.h"
 
 using namespace std;
-
-class Scorecard;
 
 //base class
 class Game
 {
+	friend class Participants;
+	friend class Scorecard;
+
 	public:
 			Game();
 			void choosePlayer(); //decide to play against human or CPU
