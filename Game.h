@@ -9,7 +9,7 @@
 #include <string>
 #include <iomanip>
 //#include "Scorecard.h"
-//#include "Participants.h"
+#include "Participants.h"
 
 using namespace std;
 
@@ -17,14 +17,15 @@ using namespace std;
 class Game
 {
 	friend class Participants;
-	friend class Scorecard;
+	//friend class Scorecard;
 
 	public:
 			Game();
 			void choosePlayer(); //decide to play against human or CPU
-	protected:
+			//void print();
+	private:
 			int computer;
-			Scorecard scr;
+			//Scorecard scr;
 			Participants p;
 };
 

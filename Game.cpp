@@ -6,7 +6,7 @@
 #include <string>
 #include "Game.h"
 #include "Participants.h"
-#include "Scorecard.h"
+//#include "Scorecard.h"
 using namespace std;
 
 Game::Game()
@@ -19,16 +19,17 @@ Game::Game()
 	int sum, pl;
 	int player=1;
 
-	while (sum!=26) {
+	while (sum != 26) {
 		sum=0;
 
-		scr.print();
+		p.print();
 		p.roll();
 		p.possiblePoints(player);
-		scr.print();
+		p.print();
 		p.choose(player);
 		
 		player=player+1;
+
 		pl=player%2;
 		if (pl==0) player=2;
 		else player=1;
