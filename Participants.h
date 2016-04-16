@@ -8,8 +8,6 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include "Game.h"
-//#include "Scorecard.h"
 
 using namespace std;
 
@@ -17,7 +15,6 @@ using namespace std;
 class Participants
 {
 	friend class Game;
-	//friend class Scorecard;
 
 	public:
 		Participants();	//constructor

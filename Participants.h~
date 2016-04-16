@@ -8,18 +8,14 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include "Game.h"
-#include "Scorecard.h"
 
 using namespace std;
-
-class Scorecard;
 
 //derived class
 class Participants
 {
 	friend class Game;
-	friend class Scorecard;
+	//friend class Scorecard;
 
 	public:
 		Participants();	//constructor
@@ -38,13 +34,16 @@ class Participants
 		int checkYahtzee();
 		int checkChance();
 		void possiblePoints(int);
-		void choose(int);		
-	protected:
+		void choose(int);
+		void print();
+		int calculateScore(int, int);
+		void giveBonus(int);		
+	private:
 		int die[6];
 		int rollAgain[6];
 		int scorecard[3][16];	//variable that translates between all pieces of program
 		int mask[2][13];
-		//Scorecard sc;
+		//Scorecard scr;
 };
 
 #endif
