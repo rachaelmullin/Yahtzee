@@ -575,3 +575,12 @@ void Participants::choose(int player)
 			cout << "You have already filled this option. Please select another." << endl;
 	}
 }	//end of main function
+
+
+void Participants::cleanPossible()
+{
+	for (int i = 0; i < 14; i ++)
+	{
+		scorecard[i][0] = 0;
+	}	//end for	
+}	//end of cleanPossible function

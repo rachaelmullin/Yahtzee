@@ -507,9 +507,9 @@ void Participants::possiblePoints(int player) {
 	scorecard[13][0]=checkChance();	
 
 	for (int i=0; i<14; i++) {
-		if (mask[i][player-1]!=0) 
+		if (mask[i][player-1] != 0) 
 		{
-			scorecard[i][0]=0;
+			scorecard[i][0] = 0;
 		}	//end if
 	}	//end for
 }
@@ -525,7 +525,7 @@ void Participants::choose(int player)
 		cout << "Which square would you like to fill? ";
 		cin >> choice;
 
-		if (mask[choice][player-1]==0 && choice>=0 && choice<=13) 
+		if (mask[choice-1][player-1]==0 && choice>=0 && choice<=13) 
 		{
 			switch(choice-1) {
 				case 0:
