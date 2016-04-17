@@ -18,6 +18,9 @@ Participants::Participants()
 
 void Participants::print()
 {
+
+	scorecard[6][0] = 0;	
+
 	//declare variables
 	string name1 = "Noah";
 	string name2 = "Not Rachael";
@@ -25,7 +28,7 @@ void Participants::print()
 	cout << "______________________________________________________________" << endl;
 	cout << "\t\t\t" << "Possible" << "\t" << name1 << "\t" << name2 << endl;
 	cout << "______________________________________________________________" << endl;
-	cout << "1. Aces (1s) \t\t" << scorecard[0][0] << "\t\t" << scorecard[1][0] << "\t" << scorecard[0][2] << endl;
+	cout << "1. Aces (1s) \t\t" << scorecard[0][0] << "\t\t" << scorecard[0][1] << "\t" << scorecard[0][2] << endl;
 	cout << "2. Twos (2s) \t\t" << scorecard[1][0] << "\t\t" << scorecard[1][1] << "\t" << scorecard[1][2] << endl;
 	cout << "3. Threes (3s) \t\t" << scorecard[2][0] << "\t\t" << scorecard[2][1] << "\t" << scorecard[2][2] << endl;
 	cout << "4. Fours (4s) \t\t" << scorecard[3][0] << "\t\t" << scorecard[3][1] << "\t" << scorecard[3][2] << endl;
@@ -44,6 +47,7 @@ void Participants::print()
 	cout << "11. Large Straight \t" << scorecard[11][0] << "\t\t" << scorecard[11][1] << "\t" << scorecard[11][2] << endl;
 	cout << "12. Yahtzee! \t\t" << scorecard[12][0] << "\t\t" << scorecard[12][1] << "\t" << scorecard[12][2] << endl;
 	cout << "13. Chance \t\t" << scorecard[13][0] << "\t\t" << scorecard[13][1] << "\t" << scorecard[13][2] << endl;
+	cout << "Total Score \t\t\t\t" << calculateScore(1,13) << "\t" << calculateScore(2,13) << endl;
 }	//end of print function
 
 int Participants::calculateScore(int player, int high) {
@@ -52,7 +56,7 @@ int Participants::calculateScore(int player, int high) {
 
 	for (int i = 0; i < high; i++)
 	{
-		sum = sum + scorecard[player][i];
+		sum = sum + scorecard[i][player];
 	}	//end for loop
 
 	return sum;
@@ -70,13 +74,13 @@ void Participants::giveBonus(int player)
 		bonus = 35;
 	}
 
-	scorecard[player][6] = bonus;
+	scorecard[6][player] = bonus;
 }	//end of giveBonus function
 
 void Participants::roll()
 {
     int roll=1, next;
-    int die[5]; // simulates the dice
+    //int die[5]; // simulates the dice
     string save;
     int savedDie[5] = {0, 0, 0, 0, 0};
     int savedDieValue[5] = {0, 0, 0, 0, 0};
@@ -113,9 +117,9 @@ void Participants::roll()
         	}
 	 }
 
-	 for (int i=0; i<save.length(); i++) { // converting string to int array
-        savedDie[i] = save[i] - '0';
-    }
+	for (int i=0; i<save.length(); i++) { // converting string to int array
+        	savedDie[i] = save[i] - '0';
+    	}
 
     cout << endl;
 
@@ -233,7 +237,7 @@ void Participants::roll()
             cout << endl;
 
             // output unsaved die
-           cout << "Unsaved die..." << endl;
+            cout << "Unsaved die..." << endl;
             for (int i=0; i<5; i++) {
                 if (savedDieValue[i] == 0) {
                     cout << "Die " << i+1  << " = " << die[i] << endl;
@@ -288,11 +292,15 @@ int Participants::checkTwos() {
 }
 
 int Participants::checkThrees() {
+
+	for (int i = 0; i < 5; i++)
+		cout << die[i] << endl;
         int count=0, total;
         for (int i=0; i<5; i++) {
                 if (die[i]==3) {
                         count++;
                 }
+		cout << "COUNT" << count << endl;
         }
         total=count*3;
         return total;
@@ -467,7 +475,8 @@ int Participants::checkYahtzee() {
 }
 
 int Participants::checkChance() {
-        int total=die[0]+die[1]+die[2]+die[3]+die[4];
+        int total = 0;
+	total = die[0]+die[1]+die[2]+die[3]+die[4];
         return total;
 }
 
@@ -487,19 +496,19 @@ void Participants::possiblePoints(int player) {
 	scorecard[13][0]=checkChance();	
 
 	for (int i=0; i<14; i++) {
-		if (mask[player-1][i]!=0) scorecard[0][i]=0;
+		if (mask[i][player-1]!=0) scorecard[i][0]=0;
 	}
 }
 
 void Participants::choose(int player) 
 {
 	int choice;
-	cout << "Which square would you like to fill?";
+	cout << "Which square would you like to fill? ";
 	cin >> choice;
 
 	if (mask[choice][player-1]==0 && choice>=0 && choice<=13) 
 	{
-		switch(choice) {
+		switch(choice-1) {
 			case 0:
 				scorecard[0][player] = scorecard[0][0];
 				break;
@@ -518,25 +527,25 @@ void Participants::choose(int player)
 			case 5:
 				scorecard[5][player] = scorecard[5][0];
 				break;
-			case 7:
+			case 6:
 				scorecard[7][player] = scorecard[7][0];	
 				break;
-			case 8:
+			case 7:
 				scorecard[8][player] = scorecard[8][0];	
 				break;
-			case 9:
+			case 8:
 				scorecard[9][player] = scorecard[9][0];	
 				break;
-			case 10:
+			case 9:
 				scorecard[10][player] = scorecard[10][0];	
 				break;
-			case 11:
+			case 10:
 				scorecard[11][player] = scorecard[11][0];	
 				break;
-			case 12:
+			case 11:
 				scorecard[12][player] = scorecard[12][0];	
 				break;
-			case 13:
+			case 12:
 				scorecard[13][player] = scorecard[13][0];	
 				break;	
 		}

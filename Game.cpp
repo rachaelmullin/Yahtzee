@@ -38,8 +38,12 @@ Game::Game()
 		p.possiblePoints(player);
 		p.print();
 		p.choose(player);
-		
 		player=player+1;
+
+		for (int i = 0; i < 5; i ++)
+		{
+			p.die[i] = 0;
+		}
 
 		pl=player%2;
 		if (pl==0) player=2;

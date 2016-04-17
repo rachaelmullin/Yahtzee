@@ -38,9 +38,9 @@ class Participants
 		int calculateScore(int, int);
 		void giveBonus(int);		
 	private:
-		int die[6];
-		int rollAgain[6];
-		int scorecard[16][3];	//variable that translates between all pieces of program
+		int die[5];
+		int rollAgain[5];
+		int scorecard[14][3];	//variable that translates between all pieces of program
 		int mask[13][2];
 };
 
