@@ -13,8 +13,8 @@ using namespace std;
 
 Participants::Participants()
 {
-	mask[6][0] = 1;
-	mask[6][1] = 1;
+	mask[6][0] = 0;
+	mask[6][1] = 0;
 }	//end of default constructor
 
 void Participants::print()

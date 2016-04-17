@@ -548,7 +548,7 @@ void Participants::choose(int player)
 					break;
 					
 			}
-			mask[choice][player-1] = 1;
+			mask[choice-1][player-1] = 1;
 			change = 1;	
 		}
 		else if (mask[choice][player-1] == 0 && choice >= 7 && choice < 14)
