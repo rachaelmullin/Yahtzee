@@ -39,8 +39,12 @@ Game::Game()
 	int player=1;
 
 	while (sum != 26) {
-	
+		
 		cout << endl << endl << endl << endl;
+		if (player == 1)
+			cout << "It is " << p.p1 << "'s turn!" << endl;
+		else
+			cout << "It is " << p.p2 << "'s turn!" << endl;
 		sum=0;	//reset sum variable
 
 		p.print();
