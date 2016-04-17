@@ -43,7 +43,7 @@ void Participants::print()
 	cout << "11. Large Straight \t" << scorecard[11][0] << "\t\t" << scorecard[11][1] << "\t" << scorecard[11][2] << endl;
 	cout << "12. Yahtzee! \t\t" << scorecard[12][0] << "\t\t" << scorecard[12][1] << "\t" << scorecard[12][2] << endl;
 	cout << "13. Chance \t\t" << scorecard[13][0] << "\t\t" << scorecard[13][1] << "\t" << scorecard[13][2] << endl;
-	cout << "Total Score \t\t\t\t" << calculateScore(1,14) << "\t" << calculateScore(2,13) << endl;
+	cout << "Total Score \t\t\t\t" << calculateScore(1,14) << "\t" << calculateScore(2,14) << endl;
 }	//end of print function
 
 int Participants::calculateScore(int player, int high) {

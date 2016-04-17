@@ -41,7 +41,7 @@ Game::Game()
 	while (sum != 26) {
 		
 		cout << endl << endl << endl << endl;
-		if (player = 1)
+		if (player == 1)
 			cout << "It is " << p.p1 << "'s turn!" << endl;
 		else
 			cout << "It is " << p.p2 << "'s turn!" << endl;
@@ -68,8 +68,19 @@ Game::Game()
 			sum=sum+p.mask[i][0]+p.mask[i][1];
 		}
 
-	}	
+	}
 
+	//determine winners
+	int total1, total2;
+	total1 = p.calculateScore(1,14);
+	total2 = p.calculateScore(2,14);
+	
+	if (total1 > total2)
+		cout << "Congratulations " << p.p1 << ", you have won the game!" << endl;
+	else if (total2 > total1)	
+		cout << "Congratulations " << p.p2 << ", you have won the game!" << endl;
+	else
+		cout << "Tie game. No winner this time!" << endl;
 
 }	//end of constructor
 
