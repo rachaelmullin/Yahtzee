@@ -507,9 +507,9 @@ void Participants::possiblePoints(int player) {
 	scorecard[13][0]=checkChance();	
 
 	for (int i=0; i<14; i++) {
-		if (mask[i][player-1]!=0) 
+		if (mask[i][player-1] != 0) 
 		{
-			scorecard[i][0]=0;
+			scorecard[i][0] = 0;
 		}	//end if
 	}	//end for
 }

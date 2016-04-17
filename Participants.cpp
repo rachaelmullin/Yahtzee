@@ -525,7 +525,7 @@ void Participants::choose(int player)
 		cout << "Which square would you like to fill? ";
 		cin >> choice;
 
-		if (mask[choice-1][player-1]==0 && choice>=0 && choice<=13) 
+		if (mask[choice][player-1]==0 && choice>=0 && choice<=13) 
 		{
 			switch(choice-1) {
 				case 0:
