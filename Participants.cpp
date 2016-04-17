@@ -75,6 +75,7 @@ void Participants::giveBonus(int player)
 
 void Participants::roll()
 {
+<<<<<<< HEAD
 	//declare variables
     	int roll=1, next;
     	string save;
@@ -93,6 +94,26 @@ void Participants::roll()
 	cout << endl;
     	cout << "What die(s) do you want to save? No spaces. ";
     	cin >> save; // saves die numbers as a string
+=======
+    int roll=1, next;
+    //int die[5]; // simulates the dice
+    string save;
+    int savedDie[5] = {0, 0, 0, 0, 0};
+    int savedDieValue[5] = {0, 0, 0, 0, 0};
+
+    srand(time(NULL));
+    cout << endl;
+    cout << "Roll 1!" << endl;
+
+    for (int i=0; i<5; i++) { // first roll, outputs 5 random dice
+        die[i] = rand() % 6 + 1;
+        cout << "Die " << i+1 << " = " << die[i] << endl;
+    }
+    cout << endl;
+    cout << "What die(s) do you want to save? No spaces. ";
+
+    cin >> save; // saves die numbers as a string
+>>>>>>> 4d22924c5d1121f8c0d3fba11dea86c75932687a
 	 
 	int bad=0;
 	for (int i=0; i<save.length(); i++) {
@@ -135,6 +156,44 @@ void Participants::roll()
     	}
     	
 	cout << endl;
+<<<<<<< HEAD
+=======
+    }
+
+    while (next==1 && roll<=2) { // second and third rolls
+
+        roll++; // increment roll          
+        cout << "Roll " << roll << "! Let's roll!" << endl;
+
+        cout << "New dice..." << endl;
+        for (int i=0; i<5; i++) { // outputs new dice rolls
+            if (savedDieValue[i] == 0) {
+                die[i] = rand() % 6 + 1;
+                cout << "Die " << i+1 << " = " << die[i] << endl;
+            }
+        }
+        cout << endl;
+
+        cout << "Saved dice..." << endl;
+        for (int i=0; i<5; i++) { // outputs saved dice
+            if (savedDie[i] != 0) {
+                cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
+            }
+        }
+        cout << endl;
+
+        // resetting saved die arrays
+       for (int i=0; i<5; i++) {
+            savedDie[i] = 0;
+            savedDieValue[i] = 0;
+        }
+        save = ' ';
+
+        if (roll!=3) { // asks which ones you want to save unless its the last roll
+            cout << "What die(s) do you want to save? No spaces. ";
+
+            cin >> save; // saves as a string
+>>>>>>> 4d22924c5d1121f8c0d3fba11dea86c75932687a
 
     	// output unsaved die
     	cout << "Unsaved die..." << endl;
@@ -407,7 +466,7 @@ int Participants::checkFullHouse() {
 }
 
 int Participants::checkSmStraight() {
-        int total, temp, valid;
+        int count=0, total, temp, valid;
         for (int j=0; j<5; j++) {
                 for (int k=0; k<5; k++) {
                         if (die[j]<die[k]) {
@@ -418,22 +477,30 @@ int Participants::checkSmStraight() {
                 }
         }
         for (int i=0; i<4; i++) {
-                if (die[i]==die[i+1]-1) valid=1;
+                if ((die[i]==die[i+1]-1) || (die[i]==die[i+1])) {
+			valid=1;
+			if (die[i]!=die[i+1]) count++;
+			if (count==3) break;
+		}
                 else {
 			valid=0;
 			break;
 		}
         }
         if (valid==0) {
-                for (int i=1; i<5; i++) {
-                        if (die[i]==die[i+1]-1) valid=1;
+		count=0;
+                for (int i=1; i<4; i++) {
+                        if (die[i]==die[i+1]-1 || die[i]==die[i+1]) {
+				valid=1;
+				if (die[i]!=die[i+1]) count++;
+			}
                         else {
 				valid=0;
                 		break;
 			}
 		}
         }
-        if (valid==1) total=30;
+        if (valid==1 && (count==3 || count==4)) total=30;
         else total=0;
         return total;
 }
