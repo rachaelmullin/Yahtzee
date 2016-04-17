@@ -40,9 +40,8 @@ class Participants
 	private:
 		int die[6];
 		int rollAgain[6];
-		int scorecard[3][16];	//variable that translates between all pieces of program
-		int mask[2][13];
-		//Scorecard scr;
+		int scorecard[16][3];	//variable that translates between all pieces of program
+		int mask[13][2];
 };
 
 #endif

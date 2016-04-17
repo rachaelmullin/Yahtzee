@@ -6,36 +6,45 @@
 #include <string>
 #include "Game.h"
 #include "Participants.h"
-#include "Scorecard.h"
+//#include "Scorecard.h"
 using namespace std;
 
 Game::Game()
 {
+	for (int i = 0; i < 14; i ++)
+	{
+		for (int j = 0; j < 3; j ++)
+		{
+			p.scorecard[i][j] = 0;
+		}	//end for
+	}	//end for
+
 	for (int i=0; i<14; i++) {
-		p.mask[0][i]=0;
-		p.mask[1][i]=0;
+		p.mask[i][0]=0;
+		p.mask[i][1]=0;
 	}
 	
 	int sum, pl;
 	int player=1;
 
-	while (sum!=26) {
-		sum=0;
+	while (sum != 26) {
+		sum=0;	//reset sum variable
 
-		scr.print();
+		p.print();
 		p.roll();
 		p.possiblePoints(player);
-		scr.print();
-		choose(player);
+		p.print();
+		p.choose(player);
 		
 		player=player+1;
+
 		pl=player%2;
 		if (pl==0) player=2;
 		else player=1;
 
 
 		for (int i=0; i<14; i++) {
-			sum=sum+p.mask[0][i]+p.mask[1][i];
+			sum=sum+p.mask[i][0]+p.mask[i][1];
 		}
 
 	}	
