@@ -35,10 +35,12 @@ Game::Game()
 	}
 	
 	//declare variables
-	int sum, pl;
+	int kill = 0;
+	int sum = 0;
+	int pl = 0;
 	int player=1;
 
-	while (sum != 28) {
+	while (kill != 1) {
 		
 		cout << endl << endl << endl << endl;
 		if (player == 1)
@@ -66,9 +68,14 @@ Game::Game()
 
 
 		for (int i=0; i<14; i++) {
-			sum=sum+p.mask[i][0]+p.mask[i][1];
+			for (int j=0; j<2; j++) {
+				if (p.mask[i][j] == 1)
+					sum ++;			
+			}
 		}
 
+		if (sum == 26)
+			kill = 1;
 	}
 
 	//determine winners

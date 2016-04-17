@@ -525,7 +525,7 @@ void Participants::choose(int player)
 		cout << "Which square would you like to fill? ";
 		cin >> choice;
 
-		if (mask[choice][player-1]==0 && choice>=0 && choice<=13) 
+		if (mask[choice-1][player-1]==0 && choice>=1 && choice<=6) 
 		{
 			switch(choice-1) {
 				case 0:
@@ -546,6 +546,14 @@ void Participants::choose(int player)
 				case 5:
 					scorecard[5][player] = scorecard[5][0];
 					break;
+					
+			}
+			mask[choice-1][player-1] = 1;
+			change = 1;	
+		}
+		else if (mask[choice][player-1] == 0 && choice >= 7 && choice < 14)
+		{
+			switch(choice-1) {
 				case 6:
 					scorecard[7][player] = scorecard[7][0];	
 					break;
@@ -566,10 +574,10 @@ void Participants::choose(int player)
 					break;
 				case 12:
 					scorecard[13][player] = scorecard[13][0];	
-					break;	
+					break;
 			}
 			mask[choice][player-1] = 1;
-			change = 1;	
+			change = 1;
 		}
 		else
 			cout << "You have already filled this option. Please select another." << endl;
