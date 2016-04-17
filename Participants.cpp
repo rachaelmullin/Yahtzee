@@ -93,8 +93,26 @@ void Participants::roll()
     cout << "What die(s) do you want to save? No spaces. ";
 
     cin >> save; // saves die numbers as a string
+	 
+	 int bad=0;
+	 for (int i=0; i<save.length(); i++) {
+		if (save[i]>'5' || save[i]<'1') {
+			bad=1;
+		}
+	 }
+	 while (bad==1) {
+		cout << "You have entered an invalid die. Please choose again." << endl;
+		cout << "What die(s) do you want to save? No spaces. ";
+		cin >> save;
+		cout << endl;
+        	for (int i=0; i<save.length(); i++) {
+         	       if (save[i]>5+'0' || save[i]<1+'0') {
+                        bad=1;
+                       }
+		       else bad=0;
+        	}
+	 }
 
-    //  save.erase(std::remove(save.begin(), save.end(), ' '), save.end()); // eliminating spaces...not working
 	 for (int i=0; i<save.length(); i++) { // converting string to int array
         savedDie[i] = save[i] - '0';
     }
@@ -130,6 +148,13 @@ void Participants::roll()
      cout << "Next roll? Input 1 for yes, 0 for no: ";
     cin >> next;
     cout << endl;
+    
+    while (next>1 || next<0) {
+	cout << "Invalid entry. Please pick 1 or 0." << endl;
+	cout << "Next roll? Input 1 for yes, 0 for no: ";
+	cin >> next;
+	cout << endl;
+    }
 
     while (next==1 && roll<=2) { // second and third rolls
 
@@ -165,7 +190,27 @@ void Participants::roll()
 
             cin >> save; // saves as a string
 
-            //  save.erase(std::remove(save.begin(), save.end(), ' '), save.end()); // eliminating spaces...not working
+	 int bad=0;
+         for (int i=0; i<save.length(); i++) {
+                if (save[i]>'5' || save[i]<'1') {
+                        bad=1;
+                }
+         }
+         while (bad==1) {
+                cout << "You have entered an invalid die. Please choose again." << endl;
+                cout << "What die(s) do you want to save? No spaces. ";
+                cin >> save;
+                cout << endl;
+        	for (int i=0; i<save.length(); i++) {
+                       if (save[i]>'5' || save[i]<'1') {
+                        bad=1;
+                       }
+                       else bad=0;
+                }
+ 
+	 }
+
+
          for (int i=0; i<save.length(); i++) { // converting string to int array
                 savedDie[i] = save[i] - '0';
             }
@@ -201,6 +246,14 @@ void Participants::roll()
                 cin >> next;
                 cout << endl;
             }
+
+	    while (next>1 || next<0) {
+        	cout << "Invalid entry. Please pick 1 or 0." << endl;
+        	cout << "Next roll? Input 1 for yes, 0 for no: ";
+        	cin >> next;
+        	cout << endl;
+    	    }
+
         }
     }
 
