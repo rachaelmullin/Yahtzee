@@ -336,7 +336,7 @@ int Participants::checkSix() {
 }
 
 int Participants::check3ofKind() {
-        int valid=0, total;
+        int valid=0, total=0;
         for (int i=0; i<5; i++) {
                 int count=0;
                 for (int j=0; j<5; j++) {
@@ -350,14 +350,16 @@ int Participants::check3ofKind() {
                 }
         }
         if (valid != 0) {
-                total=valid*3;
+		for (int i=0; i<5; i++) {
+                	total=total+die[i];
+		}
         }
         else total=0;
         return total;
 }
 
 int Participants::check4ofKind() {
-        int valid=0, total;
+        int valid=0, total=0;
         for (int i=0; i<5; i++) {
                 int count=0;
                 for (int j=0; j<5; j++) {
@@ -371,7 +373,9 @@ int Participants::check4ofKind() {
                 }
         }
         if (valid != 0) {
-                total=valid*4;
+          	for (int i=0; i<5; i++) {
+		      total=total+die[i];
+		}
         }
         else total=0;
         return total;
@@ -418,14 +422,20 @@ int Participants::checkSmStraight() {
                 }
         }
         for (int i=0; i<4; i++) {
-                if (die[i]==die[i+1]+1) valid=1;
-                else valid=0;
+                if (die[i]==die[i+1]-1) valid=1;
+                else {
+			valid=0;
+			break;
+		}
         }
         if (valid==0) {
                 for (int i=1; i<5; i++) {
-                        if (die[i]==die[i+1]+1) valid=1;
-                        else valid=0;
-                }
+                        if (die[i]==die[i+1]-1) valid=1;
+                        else {
+				valid=0;
+                		break;
+			}
+		}
         }
         if (valid==1) total=30;
         else total=0;
@@ -445,7 +455,10 @@ int Participants::checkLgStraight() {
         }
         for (int i=0; i<4; i++) {
                 if (die[i]==(die[i+1]-1)) valid=1;
-                else valid=0;
+                else {
+			valid=0;
+			break;
+		}
         }
         if (valid==1) total=40;
         else total=0;
