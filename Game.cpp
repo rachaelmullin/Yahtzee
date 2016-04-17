@@ -38,7 +38,7 @@ Game::Game()
 	int sum, pl;
 	int player=1;
 
-	while (sum != 26) {
+	while (sum != 28) {
 		
 		cout << endl << endl << endl << endl;
 		if (player == 1)
@@ -46,7 +46,8 @@ Game::Game()
 		else
 			cout << "It is " << p.p2 << "'s turn!" << endl;
 		sum=0;	//reset sum variable
-
+		
+		p.cleanPossible();
 		p.print();
 		p.roll();
 		p.possiblePoints(player);

@@ -13,14 +13,12 @@ using namespace std;
 
 Participants::Participants()
 {
-
+	mask[6][0] = 1;
+	mask[6][1] = 1;
 }	//end of default constructor
 
 void Participants::print()
 {
-
-	scorecard[6][0] = 0;	
-
 	cout << "______________________________________________________________" << endl;
 	cout << "\t\t\t" << "Possible" << "\t" << p1 << "\t" << p2 << endl;
 	cout << "______________________________________________________________" << endl;
@@ -509,8 +507,11 @@ void Participants::possiblePoints(int player) {
 	scorecard[13][0]=checkChance();	
 
 	for (int i=0; i<14; i++) {
-		if (mask[i][player-1]!=0) scorecard[i][0]=0;
-	}
+		if (mask[i][player-1]!=0) 
+		{
+			scorecard[i][0]=0;
+		}	//end if
+	}	//end for
 }
 
 void Participants::choose(int player) 
@@ -574,3 +575,12 @@ void Participants::choose(int player)
 			cout << "You have already filled this option. Please select another." << endl;
 	}
 }	//end of main function
+
+
+void Participants::cleanPossible()
+{
+	for (int i = 0; i < 14; i ++)
+	{
+		scorecard[i][0] = 0;
+	}	//end for	
+}	//end of cleanPossible function

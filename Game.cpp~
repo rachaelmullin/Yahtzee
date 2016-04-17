@@ -38,7 +38,7 @@ Game::Game()
 	int sum, pl;
 	int player=1;
 
-	while (sum != 26) {
+	while (sum != 28) {
 		
 		cout << endl << endl << endl << endl;
 		if (player == 1)
