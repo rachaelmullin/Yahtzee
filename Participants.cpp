@@ -90,7 +90,7 @@ void Participants::roll()
     cout << "Roll 1!" << endl;
 
     for (int i=0; i<5; i++) { // first roll, outputs 5 random dice
-        die[i] = rand() % 5 + 1;
+        die[i] = rand() % 6 + 1;
         cout << "Die " << i+1 << " = " << die[i] << endl;
     }
     cout << endl;
@@ -168,7 +168,7 @@ void Participants::roll()
         cout << "New dice..." << endl;
         for (int i=0; i<5; i++) { // outputs new dice rolls
             if (savedDieValue[i] == 0) {
-                die[i] = rand() % 5 + 1;
+                die[i] = rand() % 6 + 1;
                 cout << "Die " << i+1 << " = " << die[i] << endl;
             }
         }
@@ -415,7 +415,7 @@ int Participants::checkFullHouse() {
 }
 
 int Participants::checkSmStraight() {
-        int total, temp, valid;
+        int count=0, total, temp, valid;
         for (int j=0; j<5; j++) {
                 for (int k=0; k<5; k++) {
                         if (die[j]<die[k]) {
@@ -426,22 +426,30 @@ int Participants::checkSmStraight() {
                 }
         }
         for (int i=0; i<4; i++) {
-                if (die[i]==die[i+1]-1) valid=1;
+                if ((die[i]==die[i+1]-1) || (die[i]==die[i+1])) {
+			valid=1;
+			if (die[i]!=die[i+1]) count++;
+			if (count==3) break;
+		}
                 else {
 			valid=0;
 			break;
 		}
         }
         if (valid==0) {
-                for (int i=1; i<5; i++) {
-                        if (die[i]==die[i+1]-1) valid=1;
+		count=0;
+                for (int i=1; i<4; i++) {
+                        if (die[i]==die[i+1]-1 || die[i]==die[i+1]) {
+				valid=1;
+				if (die[i]!=die[i+1]) count++;
+			}
                         else {
 				valid=0;
                 		break;
 			}
 		}
         }
-        if (valid==1) total=30;
+        if (valid==1 && (count==3 || count==4)) total=30;
         else total=0;
         return total;
 }
