@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <string>
+#include <stdlib.h>
+#include <cstdlib>
 #include "Game.h"
 #include "Participants.h"
 //#include "Scorecard.h"
@@ -11,6 +13,12 @@ using namespace std;
 
 Game::Game()
 {
+
+	cout << "Who is Player 1? (max 10 characters): " << endl;
+	cin >> p.p1;
+	cout << "Who is Player 2? (max 10 characters): " << endl;
+	cin >> p.p2;
+
 	//initialize the scorecard array
 	for (int i = 0; i < 14; i ++)
 	{
@@ -31,6 +39,8 @@ Game::Game()
 	int player=1;
 
 	while (sum != 26) {
+	
+		cout << endl << endl << endl << endl;
 		sum=0;	//reset sum variable
 
 		p.print();

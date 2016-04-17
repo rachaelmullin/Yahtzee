@@ -21,12 +21,8 @@ void Participants::print()
 
 	scorecard[6][0] = 0;	
 
-	//declare variables
-	string name1 = "Noah";
-	string name2 = "Not Rachael";
-
 	cout << "______________________________________________________________" << endl;
-	cout << "\t\t\t" << "Possible" << "\t" << name1 << "\t" << name2 << endl;
+	cout << "\t\t\t" << "Possible" << "\t" << p1 << "\t" << p2 << endl;
 	cout << "______________________________________________________________" << endl;
 	cout << "1. Aces (1s) \t\t" << scorecard[0][0] << "\t\t" << scorecard[0][1] << "\t" << scorecard[0][2] << endl;
 	cout << "2. Twos (2s) \t\t" << scorecard[1][0] << "\t\t" << scorecard[1][1] << "\t" << scorecard[1][2] << endl;
@@ -47,7 +43,7 @@ void Participants::print()
 	cout << "11. Large Straight \t" << scorecard[11][0] << "\t\t" << scorecard[11][1] << "\t" << scorecard[11][2] << endl;
 	cout << "12. Yahtzee! \t\t" << scorecard[12][0] << "\t\t" << scorecard[12][1] << "\t" << scorecard[12][2] << endl;
 	cout << "13. Chance \t\t" << scorecard[13][0] << "\t\t" << scorecard[13][1] << "\t" << scorecard[13][2] << endl;
-	cout << "Total Score \t\t\t\t" << calculateScore(1,13) << "\t" << calculateScore(2,13) << endl;
+	cout << "Total Score \t\t\t\t" << calculateScore(1,14) << "\t" << calculateScore(2,13) << endl;
 }	//end of print function
 
 int Participants::calculateScore(int player, int high) {
