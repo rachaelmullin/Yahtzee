@@ -14,7 +14,13 @@ using namespace std;
 Participants::Participants()
 {
 
-
+	for (int i = 0; i < 14; i ++)
+	{
+		for (int j = 0; j < 3; j ++)
+		{
+			scorecard[j][i] = 0;
+		}	//end for
+	}	//end for
 
 }	//end of default constructor
 
@@ -25,27 +31,27 @@ void Participants::print()
 	string name2 = "Not Rachael";
 
 	cout << "______________________________________________________________" << endl;
-	cout << "\t\t\t" << "Possible Points" << "\t" << name1 << "\t" << name2 << endl;
+	cout << "\t\t\t" << "Possible" << "\t" << name1 << "\t" << name2 << endl;
 	cout << "______________________________________________________________" << endl;
-	cout << "1. Aces (1s) \t\t" << scorecard[0][0] << "\t" << scorecard[1][0] << "\t" << scorecard[2][0] << endl;
-	cout << "2. Twos (2s) \t\t" << scorecard[0][1] << "\t" << scorecard[1][1] << "\t" << scorecard[2][1] << endl;
-	cout << "3. Threes (3s) \t\t" << scorecard[0][2] << "\t" << scorecard[1][2] << "\t" << scorecard[2][2] << endl;
-	cout << "4. Fours (4s) \t\t" << scorecard[0][3] << "\t" << scorecard[1][3] << "\t" << scorecard[2][3] << endl;
-	cout << "5. Fives (5s) \t\t" << scorecard[0][4] << "\t" << scorecard[1][4] << "\t" << scorecard[2][4] <<  endl;
-	cout << "6. Sixes (6s) \t\t" << scorecard[0][5] << "\t" << scorecard[1][5] << "\t" << scorecard[2][5] << endl;
-	cout << "Total Score \t\t" << calculateScore(1,6) << "\t" << calculateScore(2,6) << endl;
+	cout << "1. Aces (1s) \t\t" << scorecard[0][0] << "\t\t" << scorecard[1][0] << "\t" << scorecard[2][0] << endl;
+	cout << "2. Twos (2s) \t\t" << scorecard[0][1] << "\t\t" << scorecard[1][1] << "\t" << scorecard[2][1] << endl;
+	cout << "3. Threes (3s) \t\t" << scorecard[0][2] << "\t\t" << scorecard[1][2] << "\t" << scorecard[2][2] << endl;
+	cout << "4. Fours (4s) \t\t" << scorecard[0][3] << "\t\t" << scorecard[1][3] << "\t" << scorecard[2][3] << endl;
+	cout << "5. Fives (5s) \t\t" << scorecard[0][4] << "\t\t" << scorecard[1][4] << "\t" << scorecard[2][4] <<  endl;
+	cout << "6. Sixes (6s) \t\t" << scorecard[0][5] << "\t\t" << scorecard[1][5] << "\t" << scorecard[2][5] << endl;
+	cout << "Total Score \t\t\t\t" << calculateScore(1,6) << "\t" << calculateScore(2,6) << endl;
 	giveBonus(1);
 	giveBonus(2);
-	cout << "Bonus \t\t\t" << scorecard[1][6] << "\t" << scorecard[2][6] << endl;
-	cout << "Total Score \t\t" << calculateScore(1,7) << "\t" << calculateScore(2,7) << endl;
+	cout << "Bonus \t\t\t\t\t" << scorecard[1][6] << "\t" << scorecard[2][6] << endl;
+	cout << "Total Score \t\t\t\t" << calculateScore(1,7) << "\t" << calculateScore(2,7) << endl;
 	cout << "______________________________________________________________" << endl;
-	cout << "7. 3 of a Kind (Total value of dice) \t" << scorecard[0][7] << "\t" << scorecard[1][7] << "\t" << scorecard[2][7] << endl;
-	cout << "8. 4 of a Kind (Total value of dice) \t" << scorecard[0][8] << "\t" << scorecard[1][8] << "\t" << scorecard[2][8] << endl;
-	cout << "9. Full House (35 pts) \t\t" << scorecard[0][9] << "\t" << scorecard[1][9] << "\t" << scorecard[2][9] << endl;
-	cout << "10. Small Straight (30 pts) \t\t" << scorecard[0][10] << "\t" << scorecard[1][10] << "\t" << scorecard[2][10] << endl;
-	cout << "11. Large Straight (40 pts) \t\t" << scorecard[0][11] << "\t" << scorecard[1][11] << "\t" << scorecard[2][11] << endl;
-	cout << "12. Yahtzee! (50 pts) \t\t" << scorecard[0][12] << "\t" << scorecard[1][12] << "\t" << scorecard[2][12] << endl;
-	cout << "13. Chance (Sum of all dice) \t\t" << scorecard[0][13] << "\t" << scorecard[1][13] << "\t" << scorecard[2][13] << endl;
+	cout << "7. 3 of a Kind \t\t" << scorecard[0][7] << "\t\t" << scorecard[1][7] << "\t" << scorecard[2][7] << endl;
+	cout << "8. 4 of a Kind \t\t" << scorecard[0][8] << "\t\t" << scorecard[1][8] << "\t" << scorecard[2][8] << endl;
+	cout << "9. Full House \t\t" << scorecard[0][9] << "\t\t" << scorecard[1][9] << "\t" << scorecard[2][9] << endl;
+	cout << "10. Small Straight \t" << scorecard[0][10] << "\t\t" << scorecard[1][10] << "\t" << scorecard[2][10] << endl;
+	cout << "11. Large Straight \t" << scorecard[0][11] << "\t\t" << scorecard[1][11] << "\t" << scorecard[2][11] << endl;
+	cout << "12. Yahtzee! \t\t" << scorecard[0][12] << "\t\t" << scorecard[1][12] << "\t" << scorecard[2][12] << endl;
+	cout << "13. Chance \t\t" << scorecard[0][13] << "\t\t" << scorecard[1][13] << "\t" << scorecard[2][13] << endl;
 }	//end of print function
 
 int Participants::calculateScore(int player, int high)
