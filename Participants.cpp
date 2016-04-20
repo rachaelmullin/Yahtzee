@@ -8,7 +8,6 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
-
 using namespace std;
 
 Participants::Participants()
@@ -270,7 +269,7 @@ int Participants::checkAce() {
         }
         total=count;
         return total;
-}
+}	//end of checkAce function
 
 int Participants::checkTwos() {
         int count=0, total;
@@ -281,7 +280,7 @@ int Participants::checkTwos() {
         }
         total=count*2;
         return total;
-}
+}	//end of checkTwos function
 
 int Participants::checkThrees() {
         int count=0, total;
@@ -292,7 +291,7 @@ int Participants::checkThrees() {
         }
         total=count*3;
         return total;
-}
+}	//end of checkThrees function
 
 int Participants::checkFours() {
         int count=0, total;
@@ -303,7 +302,7 @@ int Participants::checkFours() {
         }
         total=count*4;
         return total;
-}
+}	//end of checkFours function
 
 int Participants::checkFives() {
         int count=0, total;
@@ -314,7 +313,7 @@ int Participants::checkFives() {
         }
         total=count*5;
         return total;
-}
+}	//end of checkFives function
 
 int Participants::checkSix() {
         int count=0, total;
@@ -325,7 +324,7 @@ int Participants::checkSix() {
         }
         total=count*6;
         return total;
-}
+}	//end of checkSix function
 
 int Participants::check3ofKind() {
         int valid=0, total=0;
@@ -348,7 +347,7 @@ int Participants::check3ofKind() {
         }
         else total=0;
         return total;
-}
+}	//end of check3ofKind function
 
 int Participants::check4ofKind() {
         int valid=0, total=0;
@@ -371,7 +370,7 @@ int Participants::check4ofKind() {
         }
         else total=0;
         return total;
-}
+}	//end of check4ofKind function
 
 int Participants::checkFullHouse() {
         int total, pair=0, pairNum, triple=0, tripleNum;
@@ -386,21 +385,21 @@ int Participants::checkFullHouse() {
                                                 if (i!=j && die[i]==die[j] && die[j]!=pairNum) {
                                                         count++;
 
-                                                }
-                                        }
+                                                }	//end if
+                                        }	//end for
                                         if (count==2) {
                                                 triple=1;
-                                        }
-                                }
-                        }
-                }
-        }
+                                        }	//end if
+                                }	//end for
+                        }	//end if
+                }	//end for
+        }	//end for
         if (pair=1 && triple==1) {
                 total=25;
-        }
+        }	//end if
         else total=0;
         return total;
-}
+}	//end of checkFullHouse function
 
 int Participants::checkSmStraight() {
         int count=0, total, temp, valid;
@@ -440,7 +439,7 @@ int Participants::checkSmStraight() {
         if (valid==1 && (count==3 || count==4)) total=30;
         else total=0;
         return total;
-}
+}	//end of checkSmStraight function
 
 int Participants::checkLgStraight() {
         int total, temp, valid;
@@ -463,7 +462,7 @@ int Participants::checkLgStraight() {
         if (valid==1) total=40;
         else total=0;
         return total;
-}
+}	//end of checkLgStraight function
 
 int Participants::checkYahtzee() {
         int total, valid=0;
@@ -472,22 +471,22 @@ int Participants::checkYahtzee() {
                 for (int j=0; j<5; j++) {
                         if (i!=j && die[i]==die[j]) {
                                 count++;
-                        }
-                }
+                        }	//end if
+                }	//end for
                 if (count==4) {
                         valid=1;
-                }
-        }
+                }	//end if
+        }	//end for
         if (valid==1) total=50;
         else total=0;
         return total;
-}
+}	//end of checkYahtzee function
 
 int Participants::checkChance() {
         int total = 0;
 	total = die[0]+die[1]+die[2]+die[3]+die[4];
         return total;
-}
+}	//end of checkChance function
 
 void Participants::possiblePoints(int player) {
 	scorecard[0][0]=checkAce();
@@ -510,13 +509,13 @@ void Participants::possiblePoints(int player) {
 			scorecard[i][0] = 0;
 		}	//end if
 	}	//end for
-}
+}	//end of possiblePoints function
 
 void Participants::choose(int player) 
 {
+	//declare variables
 	int choice;
 	int change = 0;
-	
 
 	while (change == 0)	
 	{	
@@ -545,10 +544,10 @@ void Participants::choose(int player)
 					scorecard[5][player] = scorecard[5][0];
 					break;
 					
-			}
+			}	//end switch
 			mask[choice-1][player-1] = 1;
 			change = 1;	
-		}
+		}	//end if
 		else if (mask[choice][player-1] == 0 && choice >= 7 && choice < 14)
 		{
 			switch(choice-1) {
@@ -573,15 +572,14 @@ void Participants::choose(int player)
 				case 12:
 					scorecard[13][player] = scorecard[13][0];	
 					break;
-			}
+			}	//end switch
 			mask[choice][player-1] = 1;
 			change = 1;
-		}
+		}	//end else if
 		else
 			cout << "You have already filled this option. Please select another." << endl;
-	}
+	}	//end while
 }	//end of main function
-
 
 void Participants::cleanPossible()
 {

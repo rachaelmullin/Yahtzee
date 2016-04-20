@@ -20,10 +20,8 @@ class Game
 	public:
 			Game();
 			void choosePlayer(); //decide to play against human or CPU
-			//void print();
 	private:
 			int computer;
-			//Scorecard scr;
 			Participants p;
 };
 

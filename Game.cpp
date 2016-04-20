@@ -8,11 +8,11 @@
 #include <cstdlib>
 #include "Game.h"
 #include "Participants.h"
-//#include "Scorecard.h"
 using namespace std;
 
 Game::Game()
 {
+	cout << endl << endl << endl << endl << endl;
 
 	cout << "Who is Player 1? (max 10 characters): " << endl;
 	cin >> p.p1;
@@ -83,13 +83,16 @@ Game::Game()
 	total1 = p.calculateScore(1,14);
 	total2 = p.calculateScore(2,14);
 	
+	cout << endl << endl << endl << endl << endl;
+
 	if (total1 > total2)
 		cout << "Congratulations " << p.p1 << ", you have won the game!" << endl;
 	else if (total2 > total1)	
 		cout << "Congratulations " << p.p2 << ", you have won the game!" << endl;
 	else
 		cout << "Tie game. No winner this time!" << endl;
-
+	
+	cout << endl << endl << endl << endl;
 }	//end of constructor
 
 void Game::choosePlayer()
