@@ -8,6 +8,7 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include "AI.h"
 
 using namespace std;
 

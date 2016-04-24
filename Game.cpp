@@ -15,9 +15,9 @@ Game::Game()
 {
 
 	cout << "Who is Player 1? (max 10 characters): " << endl;
-	cin >> p.p1;
+	cin >> p.p1; //player 1 name
 	cout << "Who is Player 2? (max 10 characters): " << endl;
-	cin >> p.p2;
+	cin >> p.p2; //player 2 name
 
 	//initialize the scorecard array
 	for (int i = 0; i < 14; i ++)
@@ -40,22 +40,22 @@ Game::Game()
 	int pl = 0;
 	int player=1;
 
-	while (kill != 1) {
+	while (kill != 1) { //while scorecard is not filled
 		
 		cout << endl << endl << endl << endl;
-		if (player == 1)
+		if (player == 1) 
 			cout << "It is " << p.p1 << "'s turn!" << endl;
 		else
 			cout << "It is " << p.p2 << "'s turn!" << endl;
 		sum=0;	//reset sum variable
 		
-		p.cleanPossible();
-		p.print();
-		p.roll();
-		p.possiblePoints(player);
-		p.print();
-		p.choose(player);
-		player=player+1;
+		p.cleanPossible(); //resets possible points column
+		p.print(); //prints scorecard
+		p.roll(); //roll function
+		p.possiblePoints(player); //outputs possible points given current dice
+		p.print(); //print scorecard
+		p.choose(player); //function where player chooses which square to fill
+		player=player+1; //go to next player
 
 		for (int i = 0; i < 5; i ++)
 		{
