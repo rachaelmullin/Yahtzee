@@ -8,6 +8,9 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdio.h>
 #include "AI.h"
 
 using namespace std;
@@ -604,7 +607,11 @@ void Participants::choose(int player)
 			mask[choice][player-1] = 1;
 			change = 1;
 		}	//end else if
-		else
+        else if (choice > 13 || choice < 1 || !isdigit(choice)) {
+            cout << "This is an invlaid option. Please pick another option." << endl;
+            change = 0;
+        }
+        else
 			cout << "You have already filled this option. Please select another." << endl;
 	}	//end while
 }	//end of main function
