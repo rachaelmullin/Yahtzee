@@ -1,4 +1,4 @@
-all:	Yahtzee
+all:	Yahtzee 
 
 Yahtzee: main.o Game.o Participants.o
 	g++ main.o Game.o Participants.o -o Yahtzee

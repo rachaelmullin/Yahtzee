@@ -1,7 +1,7 @@
 // Pauline Blatt, Rachael Mullin, Noah Sarkey
 // Final Project
 // Participants.h
-
+ 
 #pragma once
 #ifndef _PARTICIPANTS_H_
 #define _PARTICIPANTS_H_
