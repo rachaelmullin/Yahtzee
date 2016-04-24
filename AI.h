@@ -1,6 +1,6 @@
 // Pauline Blatt, Rachael Mullin, Noah Sarkey
-//Final Project
-//AI.h
+// Final Project
+// AI.h
 
 #pragma once
 #ifndef AI_H

@@ -1,6 +1,6 @@
 // Pauline Blatt, Rachael Mullin, Noah Sarkey
-//Final Project
-//AI.cpp
+// Final Project
+// AI.cpp
 
 #include "AI.h"
 #include <iostream>
@@ -17,7 +17,7 @@ using namespace std;
 AI::AI()
 {
 	
-}
+}	//end of default constructor
 
 string AI::AIroll(int die[5])
 {
