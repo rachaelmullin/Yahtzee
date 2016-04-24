@@ -8,6 +8,11 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+<<<<<<< HEAD
+=======
+#include "AI.h"
+
+>>>>>>> b49b002ecd54a6dc2033587cd32939572880109c
 using namespace std;
 
 Participants::Participants()
