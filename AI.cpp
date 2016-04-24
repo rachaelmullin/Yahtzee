@@ -1,4 +1,4 @@
-//Pauline Blatt, Rachael Mullin, Noah Sarkey
+// Pauline Blatt, Rachael Mullin, Noah Sarkey
 //Final Project
 //AI.cpp
 
