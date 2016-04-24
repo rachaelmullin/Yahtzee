@@ -23,7 +23,7 @@ class AI
 		AI();
 		string AIroll(int *);
 		int choose(int [][3]);
-		int score(int [][3], int [][2]);
+		int score(int [][3], int [][3]);
 	private:
 
 };

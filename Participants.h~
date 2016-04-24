@@ -34,7 +34,7 @@ class Participants
 		int checkYahtzee();
 		int checkChance();
 		void possiblePoints(int);
-		void choose(int, int);
+		void choose(int);
 		void print();
 		int calculateScore(int, int);
 		void giveBonus(int);

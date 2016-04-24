@@ -100,14 +100,14 @@ int AI::score(int scorecard[][3], int mask[][2])
 	{
 		for (int j = 0; j < 14; j ++)
 		{
-			if (mask[j][1] == 0 && j != 6)
+			while (kill != 1)
 			{
-				if (kill != 1)
+				if (mask[j][1] == 0 && j != 6)
 				{
 					score = j;
 					kill = 1;
-				}	//end if
-			}	//end for
+				}	//end for
+			}	//end while
 		}	//end for	
 	}	//end if
 

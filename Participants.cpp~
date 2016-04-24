@@ -627,7 +627,7 @@ void Participants::choose(int player, int computer)
 		}	//end if
 		else
 		{
-			choice = a.score(scorecard, mask);
+			choice = a.score(scorecard);
 			cout << "ROBOT CHOICE " << choice << endl;
 		}	//end else
 
