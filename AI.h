@@ -1,4 +1,4 @@
-//Pauline Blatt, Rachael Mullin, Noah Sarkey
+// Pauline Blatt, Rachael Mullin, Noah Sarkey
 //Final Project
 //AI.h
 
@@ -8,6 +8,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <stdio.h>
+#include <string.h>
 
 using namespace std;
 
@@ -15,13 +17,15 @@ using namespace std;
 class AI
 {
 	friend class Participants;
+	friend class Game;
 
 	public:
 		AI();
-		void AIroll();
+		string AIroll(int *);
+		int choose(int [][3]);
+		int score(int [][3], int [][2]);
 	private:
 
 };
-
 
 #endif

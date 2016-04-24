@@ -8,6 +8,9 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdio.h>
 #include "AI.h"
 
 using namespace std;
@@ -72,13 +75,16 @@ void Participants::giveBonus(int player)
 	scorecard[6][player] = bonus;
 }	//end of giveBonus function
 
-void Participants::roll()
+void Participants::roll(int cpu, int player)
 {
+	int computer = cpu;
 	//declare variables
 	int roll=1, next;
     	string save;
     	int savedDie[5] = {0, 0, 0, 0, 0};
     	int savedDieValue[5] = {0, 0, 0, 0, 0};
+
+	int bad=0, nosave=0;
 
     	srand(time(NULL));
     	cout << endl;
@@ -89,11 +95,24 @@ void Participants::roll()
         	cout << "Die " << i+1 << " = " << die[i] << endl;
     	}	//end for
     
-	cout << endl;
-    	cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
-    	cin >> save; // saves die numbers as a string
-	 
-	int bad=0, nosave=0;
+	if (computer != 1 || player == 1)
+	{
+		cout << endl;
+	    	cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
+	    	cin >> save; // saves die numbers as a string
+	}	//end if
+
+
+
+
+
+	else
+	{
+		cout << "entered" << endl;
+		save = a.AIroll(die);
+		cout << save << endl;
+	}	 //end else
+		
 	for (int i=0; i<save.length(); i++) {
 		if (save[i]=='n') nosave=1;
 		if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
@@ -101,33 +120,52 @@ void Participants::roll()
 		}	//end if
 	}	//end for
 
+
+
+
+
+
 	while (bad==1) {
 		cout << "You have entered an invalid die. Please choose again." << endl;
 		cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
 		cin >> save;
 		cout << endl;
-        	for (int i=0; i<save.length(); i++) {
+		for (int i=0; i<save.length(); i++) {
 			if (save[i]=='n') nosave=1;
-         	       if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
-                       		bad=1;
-                       }
-		       else bad=0;
-        	}
-	 }
-	
-		for (int i=0; i<save.length(); i++) { // converting string to int array
-        		savedDie[i] = save[i] - '0';
-    		}
+		        if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
+		      		bad=1;
+		        }	//end if
+			else bad=0;
+		}	//end for
+	}	//end while
 
-    		cout << endl;
+
+
+
+
+
+	for (int i=0; i<save.length(); i++) { // converting string to int array
+        	savedDie[i] = save[i] - '0';
+    	}	//end for
+
+    	cout << endl;
+
+
+
+
+
+
 
 	if (nosave!=1) {
+
+
+
 
     		for (int i=0; i<5; i++) { // inputs the saved die's values into its own array for future use
         		if (savedDie[i] != 0) {
            			savedDieValue[savedDie[i]-1] = die[savedDie[i]-1];
-        		}
-    		}
+        		}	//end if
+    		}	//end for
 
     		// output saved die
 	 	cout << "Saved Dice..." << endl;
@@ -135,8 +173,8 @@ void Participants::roll()
     		for (int i=0; i<5; i++) { // outputs saved dice
        			if (savedDie[i] != 0) {
             			cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
-        		}
-    		}
+        		}	//end if
+    		}	///end for
     		cout << endl;
 
     		// output unsaved die
@@ -144,141 +182,179 @@ void Participants::roll()
     		for (int i=0; i<5; i++) {
         		if (savedDieValue[i] == 0) {
             			cout << "Die " << i+1  << " = " << die[i] << endl;
-        		}
-    		}
+        		}	//end if
+    		}	//end for
     		cout << endl;
 
-    		// prompt user to roll again
-     		cout << "Next roll? Input 1 for yes, 0 for no: ";
-   		cin >> next;
-    		cout << endl;
-    
-    		while (next>1 || next<0) {
-			cout << "Invalid entry. Please pick 1 or 0." << endl;
-			cout << "Next roll? Input 1 for yes, 0 for no: ";
-			cin >> next;
-			cout << endl;
-    		}
-	}
+		if (player == 1 || computer != 1)
+    		{
+			// prompt user to roll again
+	     		cout << "Next roll? Input 1 for yes, 0 for no: ";
+	   		cin >> next;
+	    		cout << endl;
+	    
+	    		while (next>1 || next<0) {
+				cout << "Invalid entry. Please pick 1 or 0." << endl;
+				cout << "Next roll? Input 1 for yes, 0 for no: ";
+				cin >> next;
+				cout << endl;
+	    		}	//end while
+		}	//end if
+		
+		else
+		{
+			possiblePoints(2);
+			next = a.choose(scorecard);
+			cout << next << endl;
+		}	//end else
+	}	//end if
 	else {
 		next=1;
 		for (int i=0; i<5; i++) {
 			savedDie[i]=0;
-		}
-	}	
+		}	//end for
+	}	//end else
 
-    while (next==1 && roll<=2) { // second and third rolls
 
-        roll++; // increment roll          
-        cout << "Roll " << roll << "! Let's roll!" << endl;
 
-        cout << "New dice..." << endl;
-        for (int i=0; i<5; i++) { // outputs new dice rolls
-            if (savedDieValue[i] == 0) {
-                die[i] = rand() % 6 + 1;
-                cout << "Die " << i+1 << " = " << die[i] << endl;
-            }
-        }
-        cout << endl;
 
-	if (nosave!=1) {
-        	cout << "Saved dice..." << endl;
-	}
-        for (int i=0; i<5; i++) { // outputs saved dice
-            if (savedDie[i] != 0) {
-                cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
-            }
-        }
-        cout << endl;
 
-        // resetting saved die arrays
-       for (int i=0; i<5; i++) {
-            savedDie[i] = 0;
-            savedDieValue[i] = 0;
-        }
 
-        save = ' ';
-        nosave=0;
-	if (roll!=3) { // asks which ones you want to save unless its the last roll
-            cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
 
-            cin >> save; // saves as a string
 
-	 bad=0;
-         for (int i=0; i<save.length(); i++) {
-        	if (save[i]=='n') nosave=1; 
-	       	if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
-                	bad=1;
-                }
-         }
-         while (bad==1) {
-                cout << "You have entered an invalid die. Please choose again." << endl;
-                cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
-                cin >> save;
-                cout << endl;
-        	for (int i=0; i<save.length(); i++) {
-        		if (save[i]=='n') nosave=1;				  
-	             	if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
-                        	bad=1;
-                       	}
-                       	else bad=0;
-                }
- 
-	 }
 
-         for (int i=0; i<save.length(); i++) { // converting string to int array
-                savedDie[i] = save[i] - '0';
-         }
+
+
+
+    	while (next==1 && roll<=2) { // second and third rolls
+		roll++; // increment roll          
+		cout << "Roll " << roll << "! Let's roll!" << endl;
+
+        	cout << "New dice..." << endl;
+		for (int i=0; i<5; i++) { // outputs new dice rolls
+		    if (savedDieValue[i] == 0) {
+		        die[i] = rand() % 6 + 1;
+		        cout << "Die " << i+1 << " = " << die[i] << endl;
+		    }	//end if
+		}	//end for
+		cout << endl;
+
+		if (nosave!=1) {
+			cout << "Saved dice..." << endl;
+		}	//end if
+		for (int i=0; i<5; i++) { // outputs saved dice
+		    if (savedDie[i] != 0) {
+		        cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
+		    }	//end if
+		}	//end for
+		cout << endl;
+
+		// resetting saved die arrays
+	       	for (int i=0; i<5; i++) {
+		    savedDie[i] = 0;
+		    savedDieValue[i] = 0;
+		}	//end for
+
+		save = ' ';
+		nosave=0;
+
+		if (roll!=3) { // asks which ones you want to save unless its the last roll
+			if (player == 1 || computer != 1)
+		    	{
+				cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
+		    		cin >> save; // saves as a string
+			}	//end if
+			else
+			{
+				cout << "entered" << endl;
+				save = a.AIroll(die);
+				cout << save << endl;
+			}	 //end else
+
+			 bad=0;
+			 for (int i=0; i<save.length(); i++) {
+				if (save[i]=='n') nosave=1; 
+			       	if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
+					bad=1;
+				}	//end if
+			 }	//end for
+			 while (bad==1) {
+				cout << "You have entered an invalid die. Please choose again." << endl;
+				cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
+				cin >> save;
+				cout << endl;
+				for (int i=0; i<save.length(); i++) {
+					if (save[i]=='n') nosave=1;				  
+				     	if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
+				        	bad=1;
+				       	}	//end if
+				       	else bad=0;
+				}	//end for
+			 }	//end while
+
+			 for (int i=0; i<save.length(); i++) { // converting string to int array
+				savedDie[i] = save[i] - '0';
+			 }	//end for
 	
-	if (nosave==1) {
-		for (int i=0; i<5; i++) {
-			savedDie[i]=0;
-		}
-	}
+			if (nosave==1) {
+				for (int i=0; i<5; i++) {
+					savedDie[i]=0;
+				}	//end for
+			}	//end if
 
-	if (nosave==0) {
+			if (nosave==0) {
 
-        	for (int i=0; i<5; i++) {
-                	if (savedDie[i] != 0) {
-                    		savedDieValue[savedDie[i]-1] = die[savedDie[i]-1];
-                	}
-            	}
-            	cout << endl;
+				for (int i=0; i<5; i++) {
+					if (savedDie[i] != 0) {
+				    		savedDieValue[savedDie[i]-1] = die[savedDie[i]-1];
+					}	//end if
+			    	}	//end for
+			    	cout << endl;
 
-            	// output saved die
-         	cout << "You saved..." << endl;
+			    	// output saved die
+			 	cout << "You saved..." << endl;
 
-            	for (int i=0; i<5; i++) { // outputs saved dice
-                	if (savedDie[i] != 0) {
-                 	   	cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
-                	}
-            	}
-            	cout << endl;
+			    	for (int i=0; i<5; i++) { // outputs saved dice
+					if (savedDie[i] != 0) {
+				 	   	cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
+					}	//end if
+			    	}	//end for
+			    	cout << endl;
 
-           	// output unsaved die
-            	cout << "Unsaved die..." << endl;
-            	for (int i=0; i<5; i++) {
-                	if (savedDieValue[i] == 0) {
-                 	   	cout << "Die " << i+1  << " = " << die[i] << endl;
-                	}
-            	}
-            	cout << endl;
+			   	// output unsaved die
+			    	cout << "Unsaved die..." << endl;
+			    	for (int i=0; i<5; i++) {
+					if (savedDieValue[i] == 0) {
+				 	   	cout << "Die " << i+1  << " = " << die[i] << endl;
+					}	//end if
+			    	}	//end for
+			    	cout << endl;
 
-            	if (roll!=3) {
-                	cout << "Next roll? Input 1 for yes, 0 for no: ";
-                	cin >> next;
-                	cout << endl;
-            	}
+			    	if (roll!=3) {
+					if (computer != 1 || player == 1)
+					{
+						cout << "Next roll? Input 1 for yes, 0 for no: ";
+						cin >> next;
+						cout << endl;
+					}	//end if
+					else
+					{
+						possiblePoints(2);
+						next = a.choose(scorecard);
+						cout << next << endl;
+					}	//end else
+			    	}	//end if
+				
 
-	    while (next>1 || next<0) {
-        	cout << "Invalid entry. Please pick 1 or 0." << endl;
-        	cout << "Next roll? Input 1 for yes, 0 for no: ";
-        	cin >> next;
-        	cout << endl;
-    	    }
-	}
-        }
-    }
+			    while (next>1 || next<0) {
+				cout << "Invalid entry. Please pick 1 or 0." << endl;
+				cout << "Next roll? Input 1 for yes, 0 for no: ";
+				cin >> next;
+				cout << endl;
+		    	    }	//end while
+			}	//end if
+       		}	//end if
+	}	//end while
 
     	cout << "Your dice are: " << endl;
     	for (int i=0; i<5; i++) {
@@ -539,7 +615,7 @@ void Participants::possiblePoints(int player) {
 	}	//end for
 }	//end of possiblePoints function
 
-void Participants::choose(int player) 
+void Participants::choose(int player, int computer) 
 {
 	//declare variables
 	int choice;
@@ -547,8 +623,16 @@ void Participants::choose(int player)
 
 	while (change == 0)	
 	{	
-		cout << "Which square would you like to fill? ";
-		cin >> choice;
+		if (player == 1 || computer != 1)
+		{
+			cout << "Which square would you like to fill? ";
+			cin >> choice;
+		}	//end if
+		else
+		{
+			choice = a.score(scorecard, mask);
+			cout << "ROBOT CHOICE " << choice << endl;
+		}	//end else
 
 		if (mask[choice-1][player-1]==0 && choice>=1 && choice<=6) 
 		{
@@ -604,7 +688,11 @@ void Participants::choose(int player)
 			mask[choice][player-1] = 1;
 			change = 1;
 		}	//end else if
-		else
+        else if (choice > 13 || choice < 1 || !isdigit(choice)) {
+            cout << "This is an invlaid option. Please pick another option." << endl;
+            change = 0;
+        }
+        else
 			cout << "You have already filled this option. Please select another." << endl;
 	}	//end while
 }	//end of main function

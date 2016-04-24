@@ -1,7 +1,7 @@
 // Pauline Blatt, Rachael Mullin, Noah Sarkey
 // Final Project
 // Participants.h
-
+ 
 #pragma once
 #ifndef _PARTICIPANTS_H_
 #define _PARTICIPANTS_H_
@@ -19,7 +19,7 @@ class Participants
 
 	public:
 		Participants();	//constructor
-		void roll();
+		void roll(int, int);
 		int checkAce();
 		int checkTwos();
 		int checkThrees();
@@ -34,7 +34,7 @@ class Participants
 		int checkYahtzee();
 		int checkChance();
 		void possiblePoints(int);
-		void choose(int);
+		void choose(int, int);
 		void print();
 		int calculateScore(int, int);
 		void giveBonus(int);
@@ -46,6 +46,7 @@ class Participants
 		int rollAgain[5];
 		int scorecard[14][3];	//variable that translates between all pieces of program
 		int mask[14][2];
+		AI a;
 };
 
 #endif

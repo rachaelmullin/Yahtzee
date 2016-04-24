@@ -13,7 +13,9 @@ using namespace std;
 Game::Game()
 {
 	cout << endl << endl << endl << endl << endl;
-
+	
+	cout << "Would you like to play against a computer? (Enter 1 to play against CPU)" << endl;
+	cin >> computer;
 	cout << "Who is Player 1? (max 10 characters): " << endl;
 	cin >> p.p1; //player 1 name
 	cout << "Who is Player 2? (max 10 characters): " << endl;
@@ -51,10 +53,10 @@ Game::Game()
 		
 		p.cleanPossible(); //resets possible points column
 		p.print(); //prints scorecard
-		p.roll(); //roll function
+		p.roll(computer, player); //roll function
 		p.possiblePoints(player); //outputs possible points given current dice
 		p.print(); //print scorecard
-		p.choose(player); //function where player chooses which square to fill
+		p.choose(player, computer); //function where player chooses which square to fill
 		player=player+1; //go to next player
 
 		for (int i = 0; i < 5; i ++)
