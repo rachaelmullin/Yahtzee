@@ -95,24 +95,21 @@ void Participants::roll(int cpu, int player)
         	cout << "Die " << i+1 << " = " << die[i] << endl;
     	}	//end for
     
+	//determine which die will be saved for either human or computer player
 	if (computer != 1 || player == 1)
 	{
 		cout << endl;
 	    	cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
 	    	cin >> save; // saves die numbers as a string
 	}	//end if
-
-
-
-
-
 	else
 	{
 		cout << "entered" << endl;
 		save = a.AIroll(die);
 		cout << save << endl;
 	}	 //end else
-		
+	
+	//do stuff to keep an arry of the saved die
 	for (int i=0; i<save.length(); i++) {
 		if (save[i]=='n') nosave=1;
 		if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
@@ -120,11 +117,7 @@ void Participants::roll(int cpu, int player)
 		}	//end if
 	}	//end for
 
-
-
-
-
-
+	//error checking and then saving the correct die
 	while (bad==1) {
 		cout << "You have entered an invalid die. Please choose again." << endl;
 		cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
@@ -139,28 +132,13 @@ void Participants::roll(int cpu, int player)
 		}	//end for
 	}	//end while
 
-
-
-
-
-
 	for (int i=0; i<save.length(); i++) { // converting string to int array
         	savedDie[i] = save[i] - '0';
     	}	//end for
-
     	cout << endl;
 
 
-
-
-
-
-
 	if (nosave!=1) {
-
-
-
-
     		for (int i=0; i<5; i++) { // inputs the saved die's values into its own array for future use
         		if (savedDie[i] != 0) {
            			savedDieValue[savedDie[i]-1] = die[savedDie[i]-1];
@@ -215,27 +193,16 @@ void Participants::roll(int cpu, int player)
 		}	//end for
 	}	//end else
 
-
-
-
-
-
-
-
-
-
-
-
     	while (next==1 && roll<=2) { // second and third rolls
 		roll++; // increment roll          
 		cout << "Roll " << roll << "! Let's roll!" << endl;
 
         	cout << "New dice..." << endl;
 		for (int i=0; i<5; i++) { // outputs new dice rolls
-		    if (savedDieValue[i] == 0) {
-		        die[i] = rand() % 6 + 1;
-		        cout << "Die " << i+1 << " = " << die[i] << endl;
-		    }	//end if
+		    	if (savedDieValue[i] == 0) {
+		        	die[i] = rand() % 6 + 1;
+		        	cout << "Die " << i+1 << " = " << die[i] << endl;
+		    	}	//end if
 		}	//end for
 		cout << endl;
 
@@ -243,16 +210,16 @@ void Participants::roll(int cpu, int player)
 			cout << "Saved dice..." << endl;
 		}	//end if
 		for (int i=0; i<5; i++) { // outputs saved dice
-		    if (savedDie[i] != 0) {
-		        cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
-		    }	//end if
+		    	if (savedDie[i] != 0) {
+		        	cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
+		    	}	//end if
 		}	//end for
 		cout << endl;
 
 		// resetting saved die arrays
 	       	for (int i=0; i<5; i++) {
-		    savedDie[i] = 0;
-		    savedDieValue[i] = 0;
+		    	savedDie[i] = 0;
+		    	savedDieValue[i] = 0;
 		}	//end for
 
 		save = ' ';
@@ -269,16 +236,16 @@ void Participants::roll(int cpu, int player)
 				cout << "entered" << endl;
 				save = a.AIroll(die);
 				cout << save << endl;
-			}	 //end else
+			}	//end else
 
-			 bad=0;
-			 for (int i=0; i<save.length(); i++) {
+			bad=0;
+			for (int i=0; i<save.length(); i++) {
 				if (save[i]=='n') nosave=1; 
-			       	if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
+			      	if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
 					bad=1;
 				}	//end if
-			 }	//end for
-			 while (bad==1) {
+			}	//end for
+			while (bad==1) {
 				cout << "You have entered an invalid die. Please choose again." << endl;
 				cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
 				cin >> save;
@@ -290,11 +257,11 @@ void Participants::roll(int cpu, int player)
 				       	}	//end if
 				       	else bad=0;
 				}	//end for
-			 }	//end while
+			}	//end while
 
-			 for (int i=0; i<save.length(); i++) { // converting string to int array
+			for (int i=0; i<save.length(); i++) { // converting string to int array
 				savedDie[i] = save[i] - '0';
-			 }	//end for
+			}	//end for
 	
 			if (nosave==1) {
 				for (int i=0; i<5; i++) {
@@ -346,12 +313,12 @@ void Participants::roll(int cpu, int player)
 			    	}	//end if
 				
 
-			    while (next>1 || next<0) {
-				cout << "Invalid entry. Please pick 1 or 0." << endl;
-				cout << "Next roll? Input 1 for yes, 0 for no: ";
-				cin >> next;
-				cout << endl;
-		    	    }	//end while
+			    	while (next>1 || next<0) {
+					cout << "Invalid entry. Please pick 1 or 0." << endl;
+					cout << "Next roll? Input 1 for yes, 0 for no: ";
+					cin >> next;
+					cout << endl;
+		    	    	}	//end while
 			}	//end if
        		}	//end if
 	}	//end while
