@@ -90,20 +90,31 @@ void Participants::roll(int cpu, int player)
     	cout << endl;
     	cout << "Roll 1!" << endl;
 
+	/*
     	for (int i=0; i<5; i++) { // first roll, outputs 5 random dice
     		die[i] = rand() % 6 + 1;
         	cout << "Die " << i+1 << " = " << die[i] << endl;
     	}	//end for
-    
+    */
 	//determine which die will be saved for either human or computer player
 	if (computer != 1 || player == 1)
 	{
+		srand(time(NULL));	
+    		for (int i=0; i<5; i++) { // first roll, outputs 5 random dice
+    			die[i] = rand() % 6 + 1;
+        		cout << "Die " << i+1 << " = " << die[i] << endl;
+    		}	//end for
 		cout << endl;
 	    	cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
 	    	cin >> save; // saves die numbers as a string
 	}	//end if
 	else
 	{
+		srand(time(NULL));	
+    		for (int i=0; i<5; i++) { // first roll, outputs 5 random dice
+    			die[i] = rand() % 6 + 1;
+        		cout << "Die " << i+1 << " = " << die[i] << endl;
+	    	}	//end for
 		cout << "entered" << endl;
 		save = a.AIroll(die);
 		cout << save << endl;
