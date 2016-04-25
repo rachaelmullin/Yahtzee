@@ -14,13 +14,23 @@ Game::Game()
 {
 	cout << endl << endl << endl << endl << endl;
 	
-	cout << "Would you like to play against a computer? (Enter 1 to play against CPU)" << endl;
+	cout << "Would you like to play against a computer? (Enter 1 to play against CPU or 0 to play against another player) ";
 	cin >> computer;
+	
+	while (cin.fail() || computer>1 || computer<0) {
+		cin.clear();
+		cout << "Invalid. Please enter 1 to play against a computer or 0 to play against another player: ";
+		cin.ignore(256, '\n');
+		cin >> computer;
+	}
+	
 	cout << "Who is Player 1? (max 10 characters): " << endl;
 	cin >> p.p1; //player 1 name
-	cout << "Who is Player 2? (max 10 characters): " << endl;
-	cin >> p.p2; //player 2 name
-
+	if (computer!=1) {
+		cout << "Who is Player 2? (max 10 characters): " << endl;
+		cin >> p.p2; //player 2 name
+	}
+	else p.p2="Computer";
 	//initialize the scorecard array
 	for (int i = 0; i < 14; i ++)
 	{

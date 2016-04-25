@@ -182,9 +182,11 @@ void Participants::roll(int cpu, int player)
 	   		cin >> next;
 	    		cout << endl;
 	    
-	    		while (next>1 || next<0) {
+	    		while (cin.fail() || next>1 || next<0) {
+				cin.clear();
 				cout << "Invalid entry. Please pick 1 or 0." << endl;
 				cout << "Next roll? Input 1 for yes, 0 for no: ";
+				cin.ignore(256, '\n');
 				cin >> next;
 				cout << endl;
 	    		}	//end while
@@ -324,9 +326,11 @@ void Participants::roll(int cpu, int player)
 			    	}	//end if
 				
 
-			    	while (next>1 || next<0) {
+			    	while (cin.fail() || next>1 || next<0) {
+					cin.clear();
 					cout << "Invalid entry. Please pick 1 or 0." << endl;
 					cout << "Next roll? Input 1 for yes, 0 for no: ";
+					cin.ignore(256, '\n');
 					cin >> next;
 					cout << endl;
 		    	    	}	//end while
@@ -611,7 +615,13 @@ void Participants::choose(int player, int computer)
 			choice = a.score(scorecard, mask);
 			cout << "ROBOT CHOICE " << choice << endl;
 		}	//end else
-
+		if (cin.fail()) {
+			cout << "Invalid choice. Please pick a square 1-13." << endl;
+                        cin.clear();
+                        cin.ignore(256, '\n');
+                        change=0;
+		}
+		else {
 		if (mask[choice-1][player-1]==0 && choice>=1 && choice<=6) 
 		{
 			switch(choice-1) {
@@ -666,13 +676,17 @@ void Participants::choose(int player, int computer)
 			mask[choice][player-1] = 1;
 			change = 1;
 		}	//end else if
-        else if (choice > 13 || choice < 1 || !isdigit(choice)) {
-            cout << "This is an invlaid option. Please pick another option." << endl;
-            change = 0;
+        else if (cin.fail() || choice > 13 || choice < 1) {
+            cout << "This is an invalid option. Please pick another option: ";
+	    cin.clear();
+	    cin.ignore(256, '\n');
+            change=0;
+		cout << change;
         }
         else
 			cout << "You have already filled this option. Please select another." << endl;
 	}	//end while
+	}
 }	//end of main function
 
 void Participants::cleanPossible()
