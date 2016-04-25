@@ -19,7 +19,6 @@ class Game
 
 	public:
 			Game(); //constructor
-			void choosePlayer(); //decide to play against human or CPU
 	private:
 			int computer; //decides whether AI will be used 
 			Participants p; //instantiates object of class Participants
