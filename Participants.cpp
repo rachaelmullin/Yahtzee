@@ -86,7 +86,7 @@ void Participants::roll(int cpu, int player)
 
 	int bad=0, nosave=0;
 
-    	srand(time(NULL));
+    	//srand(time(NULL));
     	cout << endl;
     	cout << "Roll 1!" << endl;
 
@@ -99,7 +99,7 @@ void Participants::roll(int cpu, int player)
 	//determine which die will be saved for either human or computer player
 	if (computer != 1 || player == 1)
 	{
-		srand(time(NULL));	
+		//srand(time(NULL));	
     		for (int i=0; i<5; i++) { // first roll, outputs 5 random dice
     			die[i] = rand() % 6 + 1;
         		cout << "Die " << i+1 << " = " << die[i] << endl;
@@ -110,7 +110,7 @@ void Participants::roll(int cpu, int player)
 	}	//end if
 	else
 	{
-		srand(time(NULL));	
+		//srand(time(NULL));	
     		for (int i=0; i<5; i++) { // first roll, outputs 5 random dice
     			die[i] = rand() % 6 + 1;
         		cout << "Die " << i+1 << " = " << die[i] << endl;

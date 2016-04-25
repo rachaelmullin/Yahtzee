@@ -12,6 +12,7 @@ using namespace std;
 
 Game::Game()
 {
+	srand(time(NULL));
 	cout << endl << endl << endl << endl << endl;
 	
 	cout << "Would you like to play against a computer? (Enter 1 to play against CPU or 0 to play against another player) ";
