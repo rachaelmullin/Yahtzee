@@ -95,9 +95,9 @@ int AI::score(int scorecard[][3], int mask[][2])
 	//see what the highest possible score is
 	for (int i = 0; i < 14; i++)
 	{
-		if (scorecard[i][0] > value)
+		if (scorecard[i][0] > value) // iterates through possibilities column
 		{
-			if (i < 6)
+			if (i < 6) 
 				score = i + 1;
 			if (i > 6)
 				score = i;
@@ -109,14 +109,18 @@ int AI::score(int scorecard[][3], int mask[][2])
 	//picking a value for if there are no possible points to be had with a given turn
 	if (score == 0)
 	{
-		for (int j = 0; j < 14; j ++)
+		for (int j = 0; j < 14; j++)
 		{
-			if (mask[j][1] == 0 && j != 6)
+			if (mask[j][1] == 0 && j != 6) // iterates through CPU's score column
 			{
 				if (kill != 1)
 				{
-					score = j;
-					kill = 1;
+					if (j < 6)
+                        score = j+1;
+				    if (j > 6)
+                        score = j;
+
+                    kill = 1;
 				}	//end if
 			}	//end for
 		}	//end for	

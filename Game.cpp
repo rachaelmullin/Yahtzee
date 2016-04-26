@@ -12,7 +12,29 @@ using namespace std;
 
 Game::Game()
 {
-	srand(time(NULL));
+cout << endl << endl;
+cout << "  /$$     /$$ /$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$$$ /$$$$$$$$ /$$$$$$$$" << endl;
+cout << " |  $$   /$$//$$__  $$| $$  | $$|__  $$__/|_____ $$ | $$_____/| $$_____/" << endl;
+cout << "   \\ $$ /$$/| $$  \\ $$| $$  | $$   | $$        /$$/ | $$      | $$" << endl;
+cout << "   \\  $$$$/ | $$$$$$$$| $$$$$$$$   | $$       /$$/  | $$$$$   | $$$$$" << endl;
+cout << "    \\  $$/  | $$__  $$| $$__  $$   | $$      /$$/   | $$__/   | $$__/ "  << endl;
+cout << "     | $$   | $$  | $$| $$  | $$   | $$     /$$/    | $$      | $$    "  << endl;
+cout << "     | $$   | $$  | $$| $$  | $$   | $$    /$$$$$$$$| $$$$$$$$| $$$$$$$$" << endl;
+cout << "     |__/   |__/  |__/|__/  |__/   |__/   |________/|________/|________/" << endl;
+                                                                              
+cout << "                           .-------.    ______" << endl;
+cout << "                          /   o   /|   /\\     \\" << endl;
+cout << "                         /_______/o|  /o \\  o  \\" << endl;
+cout << "                         | o     | | /   o\\_____\\" << endl;
+cout << "                         |   o   |o/ \\o   /o    /" << endl;
+cout << "                         |     o |/   \\ o/  o  /" << endl;
+cout << "                         '-------'     \\/____o/" << endl;
+
+
+
+
+                                                                                
+    srand(time(NULL));
 	cout << endl << endl << endl << endl << endl;
 	
 	cout << "Would you like to play against a computer? (Enter 1 to play against CPU or 0 to play against another player) ";
