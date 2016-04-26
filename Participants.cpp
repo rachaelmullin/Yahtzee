@@ -1,6 +1,6 @@
 // Pauline Blatt, Rachael Mullin, Noah Sarkey
 // Final Project
-// Participants.cpp
+// Participants.cpp - contains the roll function, point checking functions, and scorecard functions
 
 #include "Participants.h"
 #include <iostream>
@@ -15,12 +15,15 @@
 
 using namespace std;
 
+// constructor
 Participants::Participants()
 {
+    // initializes the mask
     mask[6][0] = 0;
     mask[6][1] = 0;
 }	//end of default constructor
 
+// print the scorecard
 void Participants::print()
 {
     cout << "______________________________________________________________" << endl;
@@ -48,50 +51,53 @@ void Participants::print()
     cout << "Total Score \t\t\t\t" << calculateScore(1,14) << "\t" << calculateScore(2,14) << endl;
 }	//end of print function
 
+// calculate total score from dice array
 int Participants::calculateScore(int player, int high) {
+   
     //declare variables
     int sum = 0;
 
     for (int i = 0; i < high; i++)
     {
-        sum = sum + scorecard[i][player];
+        sum = sum + scorecard[i][player]; // adds values of scorecard to find total score
     }	//end for loop
 
     return sum;
 }	//end of calculateScore function
 
-
-
+// determine if player attained bonus
 void Participants::giveBonus(int player)
 {
-    //declare variables
+    // declare variables
     int bonus = 0;
 
-    if (calculateScore(player,6) >= 63)
+    if (calculateScore(player,6) >= 63) // if total score of top half of scorecard is greater than 63
     {
-        bonus = 35;
+        bonus = 35; // gives bonus
     }
 
     scorecard[6][player] = bonus;
 }	//end of giveBonus function
 
+// roll function
 void Participants::roll(int cpu, int player)
 {
     // declare variables
     int computer = cpu;
     int roll=1, next;
     string save;
-    int savedDie[5] = {0, 0, 0, 0, 0};
-    int savedDieValue[5] = {0, 0, 0, 0, 0};
+    int savedDie[5] = {0, 0, 0, 0, 0}; // die numbers player saved
+    int savedDieValue[5] = {0, 0, 0, 0, 0}; // values of dies player saved
     int bad=0, nosave=0;
 
+    // ROLL 1
     cout << endl;
     cout << "Roll 1!" << endl;
     
-    // rolls 5 random dice 
+    // rolls 5 random dice with values 1-6
     for (int i=0; i<5; i++) {
         die[i] = rand() % 6 + 1;
-        cout << "Die " << i+1 << " = " << die[i] << endl;
+        cout << "Die " << i+1 << " = " << die[i] << endl; // prints dice
     }
     cout << endl;
 
@@ -118,7 +124,7 @@ void Participants::roll(int cpu, int player)
     }	//end for
 
     // error checking and then saving the correct die
-    while (bad==1) {
+    while (bad==1) { // outputs error message
         cout << "You have entered an invalid die. Please choose again." << endl;
         cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
         cin >> save;
@@ -126,14 +132,14 @@ void Participants::roll(int cpu, int player)
         for (int i=0; i<save.length(); i++) {
             if (save[i]=='n') nosave=1; // player chooses to not save any
             if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
-                bad=1;
+                bad=1; // invalid option
             }	//end if
             else bad=0; // valid option
         }	//end for
     }	//end while
 
     // convert save string into int array
-    for (int i=0; i<save.length(); i++) {
+    for (int i=0; i<save.length(); i++) { 
         savedDie[i] = save[i] - '0';
     }	//end for
     cout << endl;
@@ -143,7 +149,7 @@ void Participants::roll(int cpu, int player)
         // inputs the saved die's values into its own array for future use
         for (int i=0; i<5; i++) {
             if (savedDie[i] != 0) {
-                savedDieValue[savedDie[i]-1] = die[savedDie[i]-1];
+                savedDieValue[savedDie[i]-1] = die[savedDie[i]-1]; // creates savedDieValue array
             }	//end if
         }	//end for
 
@@ -165,15 +171,14 @@ void Participants::roll(int cpu, int player)
         }	//end for
         cout << endl;
 
-        
+        // Determine if player wants to roll again
         if (player == 1 || computer != 1) // human player
         {
             // prompt user to roll again
             cout << "Next roll? Input 1 for yes, 0 for no: ";
             cin >> next;
-            cout << "NEXT: " << endl;
 
-            // error checking for invalid entry
+            // error checking for invalid entry of next
             while (cin.fail() || next>1 || next<0) {
                 cin.clear();
                 cout << "Invalid entry. Please pick 1 or 0." << endl;
@@ -184,14 +189,9 @@ void Participants::roll(int cpu, int player)
             }	//end while
         }	//end if
 
-        // SOMETHING IS FUCKING UP HERE
-        
         else if (computer == 1) // CPU calculates if it should roll again
         {
-            
             next = a.choose(scorecard);
-            cout << next << endl;
-        
         }	//end else
     }	//end if
 
@@ -203,13 +203,12 @@ void Participants::roll(int cpu, int player)
         }	//end for
     }	//end else
 
-    
     // ROLL 2 and 3
-    while (next==1 && roll<=2) {
+    while (next==1 && roll<=2) { // next roll but not 3rd roll
         roll++; // increment roll          
         cout << "Roll " << roll << "! Let's roll!" << endl;
 
-        // outpus new dice rolls
+        // outputs new dice rolls
         cout << "New dice..." << endl;
         for (int i=0; i<5; i++) {
             if (savedDieValue[i] == 0) {
@@ -230,59 +229,68 @@ void Participants::roll(int cpu, int player)
 
         // resetting saved die arrays
         for (int i=0; i<5; i++) {
-            savedDie[i] = 0;
-            savedDieValue[i] = 0;
+            savedDie[i] = 0; // initialize to 0
+            savedDieValue[i] = 0; // initialize to 0
         }	//end for
 
-        save = ' ';
-        nosave=0;
+        save = ' '; // reset save
+        nosave=0; // reset nosave
+        bad = 0;
 
+        // Determines which dice player wants to save
         if (roll!=3) { // asks which ones you want to save unless its the last roll
-            if (player == 1 || computer != 1)
+            
+            if (player == 1 || computer != 1) // human player
             {
                 cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
                 cin >> save; // saves as a string
             }	//end if
-            else if (computer == 1) 
+            
+            else if (computer == 1) // CPU 
             {
-                cout << "entered" << endl;
-                save = a.AIroll(die);
+                cout << "CPU Entered: " << endl;
+                save = a.AIroll(die); // function to determine which die to save
                 cout << save << endl;
             }	//end else
 
-            bad=0;
+            // error checking to see if invalid entry for save    
             for (int i=0; i<save.length(); i++) {
-                if (save[i]=='n') nosave=1; 
+                if (save[i]=='n') nosave=1; // does not save any
                 if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
-                    bad=1;
+                    bad=1; // invalid entry
                 }	//end if
             }	//end for
-            while (bad==1) {
+        
+            // Invalid entry for save
+            while (bad==1) { // displays error message
                 cout << "You have entered an invalid die. Please choose again." << endl;
                 cout << "What die(s) do you want to save? If you don't want to save any, enter 'n'. No spaces. ";
                 cin >> save;
                 cout << endl;
-                for (int i=0; i<save.length(); i++) {
+                for (int i=0; i<save.length(); i++) { // asks again to enter value for save
                     if (save[i]=='n') nosave=1;				  
                     if (save[i]!='n' && (save[i]>'5' || save[i]<'1')) {
-                        bad=1;
+                        bad=1; // invalid entry
                     }	//end if
-                    else bad=0;
+                    else bad=0; // valid entry
                 }	//end for
             }	//end while
 
-            for (int i=0; i<save.length(); i++) { // converting string to int array
+            // converting string to int array       
+            for (int i=0; i<save.length(); i++) {
                 savedDie[i] = save[i] - '0';
             }	//end for
         }
-        else if (nosave==1) {
+        
+        else if (nosave==1) { // player chooses not to save any
             for (int i=0; i<5; i++) {
-                savedDie[i]=0;
+                savedDie[i]=0; // initializes savedDie array
             }	//end for
         }	//end if
 
-        if (nosave==0) {
+        if (nosave==0) { // player chooses to save
 
+            // place saved die values into savedDieValue array
             for (int i=0; i<5; i++) {
                 if (savedDie[i] != 0) {
                     savedDieValue[savedDie[i]-1] = die[savedDie[i]-1];
@@ -291,8 +299,7 @@ void Participants::roll(int cpu, int player)
             cout << endl;
 
             // output saved die
-            cout << "You saved..." << endl;
-
+            cout << "Saved Die..." << endl;
             for (int i=0; i<5; i++) { // outputs saved dice
                 if (savedDie[i] != 0) {
                     cout << "Die " << savedDie[i] << " = " << die[savedDie[i]-1] << endl;
@@ -309,21 +316,21 @@ void Participants::roll(int cpu, int player)
             }	//end for
             cout << endl;
 
+            // if not the third roll, asks player if they want to roll again 
             if (roll!=3) {
-                if (computer != 1 || player == 1)
+                if (computer != 1 || player == 1) // human player
                 {
                     cout << "Next roll? Input 1 for yes, 0 for no: ";
                     cin >> next;
-                    cout << endl;
                 }	//end if
-                else
+                
+                else // CPU
                 {
-                    next = a.choose(scorecard);
-                    cout << next << endl;
+                    next = a.choose(scorecard); // determines if the CPU should roll again
                 }	//end else
             }	//end if
 
-
+            // Error checking for invalid next entry
             while (cin.fail() || next>1 || next<0) {
                 cin.clear();
                 cout << "Invalid entry. Please pick 1 or 0." << endl;
@@ -336,80 +343,90 @@ void Participants::roll(int cpu, int player)
     }	//end if
     //end while
     
+    // outputs dice
     cout << "Your dice are: " << endl;
     for (int i=0; i<5; i++) {
         cout << "Die " << i+1 << " = " << die[i] << endl;
     }	//end for
+
+    // prompt user to pick score
     cout << "Now pick a score!" << endl;
 
 }	//end of roll function
 
+// determines ones score
 int Participants::checkAce() {
     int count=0, total;
     for (int i=0; i<5; i++) {
         if (die[i]==1) {
-            count++;
+            count++; // number of ones
         }
     }
     total=count;
     return total;
 }	//end of checkAce function
 
+// determines twos score
 int Participants::checkTwos() {
     int count=0, total;
     for (int i=0; i<5; i++) {
         if (die[i]==2) {
-            count++;
+            count++; // number of twos
         }
     }
-    total=count*2;
+    total=count*2; // twos score
     return total;
 }	//end of checkTwos function
 
+// determines threes score
 int Participants::checkThrees() {
     int count=0, total;
     for (int i=0; i<5; i++) {
         if (die[i]==3) {
-            count++;
+            count++; // number of threes
         }
     }
-    total=count*3;
+    total=count*3; // threes score
     return total;
 }	//end of checkThrees function
 
+// determines fours score
 int Participants::checkFours() {
     int count=0, total;
     for (int i=0; i<5; i++) {
         if (die[i]==4) {
-            count++;
+            count++; // number of fours
         }
     }
-    total=count*4;
+    total=count*4; // fours score
     return total;
 }	//end of checkFours function
 
+// determines fives score
 int Participants::checkFives() {
     int count=0, total;
     for (int i=0; i<5; i++) {
         if (die[i]==5) {
-            count++;
+            count++; // number of fives
         }
     }
-    total=count*5;
+    total=count*5; // fives score
     return total;
 }	//end of checkFives function
 
+// determines sixes score
 int Participants::checkSix() {
     int count=0, total;
     for (int i=0; i<5; i++) {
         if (die[i] == 6) {
-            count++;
+            count++; // number of sixes
         }
     }
-    total=count*6;
+    total=count*6; // sixes score
     return total;
 }	//end of checkSix function
 
+// determines 3 of a kind score
 int Participants::check3ofKind() {
     int valid=0, total=0;
     for (int i=0; i<5; i++) {
@@ -426,13 +443,14 @@ int Participants::check3ofKind() {
     }
     if (valid != 0) {
         for (int i=0; i<5; i++) {
-            total=total+die[i];
+            total=total+die[i]; // calculating 3 of a kind score
         }
     }
     else total=0;
     return total;
 }	//end of check3ofKind function
 
+// determines 4 of a kind score
 int Participants::check4ofKind() {
     int valid=0, total=0;
     for (int i=0; i<5; i++) {
@@ -449,13 +467,14 @@ int Participants::check4ofKind() {
     }
     if (valid != 0) {
         for (int i=0; i<5; i++) {
-            total=total+die[i];
+            total=total+die[i]; // calculating 4 of a kind score
         }
     }
     else total=0;
     return total;
 }	//end of check4ofKind function
 
+// determines full house score
 int Participants::checkFullHouse() {
     int total, pair=0, pairNum, triple=0, tripleNum;
     for (int i=0; i<5; i++) {
@@ -479,12 +498,13 @@ int Participants::checkFullHouse() {
         }	//end for
     }	//end for
     if (pair=1 && triple==1) {
-        total=25;
+        total=25; // full house score given
     }	//end if
     else total=0;
     return total;
 }	//end of checkFullHouse function
 
+// determines small straight score
 int Participants::checkSmStraight() {
     int count=0, total, temp, valid;
     for (int j=0; j<5; j++) {
@@ -525,6 +545,7 @@ int Participants::checkSmStraight() {
     return total;
 }	//end of checkSmStraight function
 
+// determines large straight score
 int Participants::checkLgStraight() {
     int total, temp, valid;
     for (int j=0; j<5; j++) {
@@ -548,6 +569,7 @@ int Participants::checkLgStraight() {
     return total;
 }	//end of checkLgStraight function
 
+// determines yahtzee score
 int Participants::checkYahtzee() {
     int total, valid=0;
     for (int i=0; i<5; i++) {
@@ -566,12 +588,14 @@ int Participants::checkYahtzee() {
     return total;
 }	//end of checkYahtzee function
 
+// determiens chance score
 int Participants::checkChance() {
     int total = 0;
-    total = die[0]+die[1]+die[2]+die[3]+die[4];
+    total = die[0]+die[1]+die[2]+die[3]+die[4]; // adds values of all dice
     return total;
 }	//end of checkChance function
 
+// fill possible column on the scorecard using all the check functions
 void Participants::possiblePoints(int player) {
     scorecard[0][0]=checkAce();
     scorecard[1][0]=checkTwos();
@@ -587,6 +611,7 @@ void Participants::possiblePoints(int player) {
     scorecard[12][0]=checkYahtzee();
     scorecard[13][0]=checkChance();	
 
+    // fills possibles column with 0 if category already taken 
     for (int i=0; i<14; i++) {
         if (mask[i][player-1] != 0) 
         {
@@ -595,6 +620,7 @@ void Participants::possiblePoints(int player) {
     }	//end for
 }	//end of possiblePoints function
 
+// function used to input user/CPU choice and fill scorecard 
 void Participants::choose(int player, int computer) 
 {
     //declare variables
@@ -603,23 +629,27 @@ void Participants::choose(int player, int computer)
 
     while (change == 0)	
     {	
-        if (player == 1 || computer != 1)
+        if (player == 1 || computer != 1) // human player
         {
-            cout << "Which square would you like to fill? ";
-            cin >> choice;
+            // prompts user for what category it would like to fill
+            cout << "Which category would you like to fill? ";
+            cin >> choice; // takes in choice
         }	//end if
-        else
+        
+        else // CPU player
         {
-            choice = a.score(scorecard, mask);
-            cout << "ROBOT CHOICE " << choice << endl;
+            choice = a.score(scorecard, mask); // AI function to determine what category it should pick 
         }	//end else
+
+        // error checking, invalid input for choice
         if (cin.fail()) {
-            cout << "Invalid choice. Please pick a square 1-13." << endl;
+            cout << "Invalid choice. Please pick a category 1-13." << endl;
             cin.clear();
             cin.ignore(256, '\n');
-            change=0;
+            change=0; // run while loop again
         }
-        else {
+
+        else { // fills upper half of scorecard
             if (mask[choice-1][player-1]==0 && choice>=1 && choice<=6) 
             {
                 switch(choice-1) {
@@ -646,6 +676,8 @@ void Participants::choose(int player, int computer)
                 mask[choice-1][player-1] = 1;
                 change = 1;	
             }	//end if
+         
+            // fills lower half of scorecard
             else if (mask[choice][player-1] == 0 && choice >= 7 && choice < 14)
             {
                 switch(choice-1) {
@@ -674,20 +706,22 @@ void Participants::choose(int player, int computer)
                 mask[choice][player-1] = 1;
                 change = 1;
             }	//end else if
+            
+            // error checking, invalid option for choice
             else if (cin.fail() || choice > 13 || choice < 1) {
                 cout << "This is an invalid option. Please pick another option: ";
                 cin.clear();
                 cin.ignore(256, '\n');
-                change=0;
-                cout << change;
+                change=0; // run while loop again
             }
-            else
+
+            else // already filled option
                 cout << "You have already filled this option. Please select another." << endl;
         }	//end while
     }
 }	//end of main function
 
-
+// initializes possibles column 
 void Participants::cleanPossible()
 {
     for (int i = 0; i < 14; i ++)
