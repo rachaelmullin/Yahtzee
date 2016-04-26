@@ -80,7 +80,7 @@ int AI::choose(int scorecard[][3])
 			v = 0;
 		}	//end if
 	}	//end for
-
+    
 	return v;
 }	//end choose function
 
@@ -121,6 +121,6 @@ int AI::score(int scorecard[][3], int mask[][2])
 			}	//end for
 		}	//end for	
 	}	//end if
-
+    cout << "CPU picked category: " << score << endl;
 	return score;
 }	//end of score function
